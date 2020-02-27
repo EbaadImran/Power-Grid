@@ -1,0 +1,84 @@
+PURPLE seattle
+PURPLE portland
+PURPLE boise
+PURPLE billings
+PURPLE cheyenne
+PURPLE denver
+PURPLE omaha
+BLUE san_francisco
+BLUE salt_lake_city
+BLUE las_vegas
+BLUE los_angeles
+BLUE san_diego
+BLUE phoenix
+BLUE santa_fe
+RED kansas_city
+RED oklahoma_city
+RED memphis
+RED dallas
+RED houston
+RED new_orleans
+RED birmingham
+YELLOW fargo
+YELLOW duluth
+YELLOW minneapolis
+YELLOW chicago
+YELLOW st._louis
+YELLOW cincinnati
+YELLOW knoxville
+BROWN detroit
+BROWN buffalo
+BROWN pittsburgh
+BROWN washington_dc
+BROWN philadelphia
+BROWN new_york
+BROWN boston
+GREEN norfolk
+GREEN raleigh
+GREEN atlanta
+GREEN savannah
+GREEN jacksonville
+GREEN tampa
+GREEN miami
+portland 3 boise 12 billings 9
+seattle 3 boise 13 san_francisco 24
+seattle 12 portland 13 billings 12 cheyenne 24 salt_lake_city 8 san_francisco 23
+seattle 9 boise 12 cheyenne 9 minneapolis 18 fargo 17
+billings 9 boise 24 denver 0 omaha 14 minneapolis 18
+cheyenne 0 salt_lake_city 21 santa_fe 13 kansas_city 16
+cheyenne 14 minneapolis 8 chicago 13 kansas_city 5
+portland 24 boise 23 salt_lake_city 27 las_vegas 14 los_angeles 9
+boise 8 denver 21 santa_fe 28 las_vegas 18 san_francisco 27
+san_francisco 14 salt_lake_city 18 santa_fe 27 phoenix 15 san_diego 9 los_angeles 9
+san_francisco 9 las_vegas 9 san_diego 3
+los_angeles 3 las_vegas 9 phoenix 14
+las_vegas 15 san_diego 14 santa_fe 18
+phoenix 18 las_vegas 27 salt_lake_city 28 denver 13 kansas_city 16 oklahoma_city 15 dallas 16 houston 21
+omaha 5 denver 16 santa_fe 16 oklahoma_city 8 memphis 12 st._louis 6 chicago 8
+kansas_city 8 memphis 14 dallas 3 santa_fe 15
+kansas_city 12 st._louis 7 birmingham 6 new_orleans 7 dallas 12 oklahoma_city 14
+oklahoma_city 3 santa_fe 16 houston 5 new_orleans 12 memphis 12
+santa_fe 21 dallas 5 new_orleans 8
+houston 8 dallas 12 memphis 7 birmingham 11 jacksonville 16
+memphis 6 new_orleans 11 jacksonville 9 atlanta 3
+billings 17 duluth 6 minneapolis 6
+fargo 6 minneapolis 5 chicago 12 detroit 15
+fargo 6 duluth 5 chicago 8 omaha 8 cheyenne 18 billings 18
+minneapolis 8 duluth 12 detroit 7 cincinnati 7 st._louis 10 kansas_city 8 omaha 13
+chicago 10 cincinnati 12 atlanta 12 memphis 7 kansas_city 6
+detroit 4 pittsburgh 7 raleigh 15 knoxville 6 st._louis 12 chicago 7
+cincinnati 6 atlanta 5
+duluth 15 buffalo 7 pittsburgh 6 cincinnati 4 chicago 7
+detroit 7 new_york 8 pittsburgh 7
+detroit 6 buffalo 7 washington_dc 6 raleigh 7 cincinnati 7
+pittsburgh 6 philadelphia 3 norfolk 5
+washington_dc 3 new_york 0
+buffalo 8 boston 3 philadelphia 0
+new_york 3
+washington_dc 5 raleigh 3
+cincinnati 15 pittsburgh 7 norfolk 3 savannah 7 atlanta 7
+knoxville 5 st._louis 12 birmingham 3 savannah 7 raleigh 7
+raleigh 7 atlanta 7 jacksonville 0
+savannah 0 birmingham 9 new_orleans 16 tampa 4
+jacksonville 4 miami 4
+tampa 4
