@@ -1,5 +1,6 @@
+import javax.swing.JFrame;
 
-public class GridGraphics {
+public class GridGraphics extends JFrame {
 	Board board;
 	GridPanel panel;
 	
