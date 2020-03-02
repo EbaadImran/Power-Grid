@@ -45,7 +45,3 @@ public class Card {
 		this.maxCities = maxCities;
 	}
 }
-
-enum Resource {
-	COAL, OIL, GARBAGE, URANIUM, DOUBLE, NONE
-}
