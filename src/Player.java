@@ -3,6 +3,6 @@ public class Player {
 	Card[] plants;
 	
 	public Player() {
-		plants = new Card[3];
+		plants = new Card[4];
 	}
 }
