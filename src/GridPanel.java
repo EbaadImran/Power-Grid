@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -16,8 +17,9 @@ public class GridPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(new ImageIcon("powergrid.PNG").getImage(), 0, 0, 1920, 1080, null);
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-		g.drawString("CLICK TO CONTINUE", 50, 50);
+		g.setFont(new Font(Font.SERIF , Font.BOLD, 50));
+		g.setColor(new Color(72, 72, 72));
+		g.drawString("CLICK TO CONTINUE", 760, 850);
 	}
 	public void setGamestate(ArrayList<Object> g) {
 		gs = g;
