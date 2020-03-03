@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class Board {
 	private Player[] players;
@@ -5,7 +6,8 @@ public class Board {
 	private Graph map;
 	private int turn;
 	
-	public Board() {
+	public Board() throws IOException {
 		players = new Player[4];
+		map = new Graph();
 	}
 }
