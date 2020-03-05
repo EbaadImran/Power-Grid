@@ -9,5 +9,8 @@ public class Board {
 	public Board() throws IOException {
 		players = new Player[4];
 		map = new Graph();
+		market = new Market();
+		turn = 0;
+		
 	}
 }
