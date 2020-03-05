@@ -5,6 +5,8 @@ public class Card {
 	private int cost;
 	private int maxCities;
 	
+	private int stored;
+	
 	public Card(int n, int r, int c, int max) {
 		setNum(n);
 		setRes(Resource.values()[r]);
