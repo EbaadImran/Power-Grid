@@ -1,8 +1,8 @@
 
 public class Player {
 	private Card[] plants;
-	public int[] currStorage;
-	public int[] maxStorage;
+	private int[] currStorage;
+	private int[] maxStorage;
 	private int money;
 	private int turn;
 
