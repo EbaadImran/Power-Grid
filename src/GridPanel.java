@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 public class GridPanel extends JPanel {
 	private ArrayList<Object> gs;
+	private int screen;
 	
 	public GridPanel() {
 		gs = new ArrayList<Object>();

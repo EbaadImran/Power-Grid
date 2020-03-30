@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 public class GridGraphics extends JFrame {
-	Board board;
-	GridPanel panel;
+	private Board board;
+	private GridPanel panel;
 	
 	public GridGraphics() throws IOException {
 		board = new Board();

@@ -12,7 +12,6 @@ public class Board {
 		map = new Graph();
 		market = new Market();
 		turn = 0;
-		
 	}
 	
 	public int getTurn() {
