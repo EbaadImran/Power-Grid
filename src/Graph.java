@@ -38,8 +38,6 @@ public class Graph {
 				cities.get(cityName)
 						.addPath(new Path(cities.get(temp.nextToken()), Integer.parseInt(temp.nextToken())));
 		}
-		
-		System.out.println();
 	}
 
 	public LinkedHashMap<String, Integer> dijkstras(String src) {
@@ -91,14 +89,6 @@ public class Graph {
 		}
 
 		return dist;
-	}
-	public ArrayList<City> DFS(City s, ArrayList<City> pos)
-	{
-		if(!pos.contains(s))
-			pos.add(s);
-		for(Path k : s.getEdges())
-			DFS(k.getToCity(), pos);
-		return pos;
 	}
 
 	public City getCity(String name) {
