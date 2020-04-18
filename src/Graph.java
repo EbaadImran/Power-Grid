@@ -16,7 +16,7 @@ public class Graph {
 		System.out.println(g);
 		
 		HashMap<String, Integer> shortestTest = g.dijkstras("seattle");
-		System.out.println("Distances From Seattle");
+		System.out.println("Player 1 Distances from each City");
 		for(String k : shortestTest.keySet())
 			System.out.println(k + " " + shortestTest.get(k));
 	}
