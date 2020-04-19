@@ -1,5 +1,5 @@
 
-public class Player {
+public class Player implements Comparable<Player> {
 	private Card[] plants;
 	private int[] currStorage;
 	private int[] maxStorage;
@@ -48,5 +48,10 @@ public class Player {
 		Card c = plants[i];
 		plants[i] = null;
 		return c;
+	}
+	
+	//FINISH LATER
+	public int compareTo(Player oth) {
+		return 0;
 	}
 }

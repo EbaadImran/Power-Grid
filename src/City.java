@@ -5,12 +5,17 @@ public class City
 	private String name;
 	private String color;
 	private int index;
+	private int minX, minY, maxX, maxY;
 	private ArrayList<Path> paths;
 
-	public City(String c, String n, int i) {
+	public City(String c, String n, int i, int lx, int ly, int rx, int ry) {
 		setColor(c);
 		setName(n);
 		index = i;
+		minX = lx;
+		minY = ly;
+		maxX = rx;
+		maxY = ry;
 		paths = new ArrayList<>();
 	}
 

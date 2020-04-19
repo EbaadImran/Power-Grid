@@ -1,45 +1,45 @@
-PURPLE seattle
-PURPLE portland
-PURPLE boise
-PURPLE billings
-PURPLE cheyenne
-PURPLE denver
-PURPLE omaha
-BLUE san_francisco
-BLUE salt_lake_city
-BLUE las_vegas
-BLUE los_angeles
-BLUE san_diego
-BLUE phoenix
-BLUE santa_fe
-RED kansas_city
-RED oklahoma_city
-RED memphis
-RED dallas
-RED houston
-RED new_orleans
-RED birmingham
-YELLOW fargo
-YELLOW duluth
-YELLOW minneapolis
-YELLOW chicago
-YELLOW st._louis
-YELLOW cincinnati
-YELLOW knoxville
-BROWN detroit
-BROWN buffalo
-BROWN pittsburgh
-BROWN washington_dc
-BROWN philadelphia
-BROWN new_york
-BROWN boston
-GREEN norfolk
-GREEN raleigh
-GREEN atlanta
-GREEN savannah
-GREEN jacksonville
-GREEN tampa
-GREEN miami
+PURPLE seattle 0 0 0 0
+PURPLE portland 0 0 0 0
+PURPLE boise 0 0 0 0
+PURPLE billings 0 0 0 0
+PURPLE cheyenne 0 0 0 0
+PURPLE denver 0 0 0 0
+PURPLE omaha 0 0 0 0
+BLUE san_francisco 0 0 0 0
+BLUE salt_lake_city 0 0 0 0
+BLUE las_vegas 0 0 0 0
+BLUE los_angeles 0 0 0 0
+BLUE san_diego 0 0 0 0
+BLUE phoenix 0 0 0 0
+BLUE santa_fe 0 0 0 0
+RED kansas_city 0 0 0 0
+RED oklahoma_city 0 0 0 0
+RED memphis 0 0 0 0
+RED dallas 0 0 0 0
+RED houston 0 0 0 0
+RED new_orleans 0 0 0 0
+RED birmingham 0 0 0 0
+YELLOW fargo 0 0 0 0
+YELLOW duluth 0 0 0 0
+YELLOW minneapolis 0 0 0 0
+YELLOW chicago 0 0 0 0
+YELLOW st._louis 0 0 0 0
+YELLOW cincinnati 0 0 0 0
+YELLOW knoxville 0 0 0 0
+BROWN detroit 0 0 0 0
+BROWN buffalo 0 0 0 0
+BROWN pittsburgh 0 0 0 0
+BROWN washington_dc 0 0 0 0
+BROWN philadelphia 0 0 0 0
+BROWN new_york 0 0 0 0
+BROWN boston 0 0 0 0
+GREEN norfolk 0 0 0 0
+GREEN raleigh 0 0 0 0
+GREEN atlanta 0 0 0 0
+GREEN savannah 0 0 0 0
+GREEN jacksonville 0 0 0 0
+GREEN tampa 0 0 0 0
+GREEN miami 0 0 0 0
 portland 3 boise 12 billings 9
 seattle 3 boise 13 san_francisco 24
 seattle 12 portland 13 billings 12 cheyenne 24 salt_lake_city 8 san_francisco 23

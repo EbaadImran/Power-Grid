@@ -10,26 +10,22 @@ import java.util.TreeMap;
 
 public class Graph {
 	private LinkedHashMap<String, City> cities;
-
-	public static void main(String[] args) throws IOException {
-		Graph g = new Graph();
-		System.out.println(g);
-		
-		HashMap<String, Integer> shortestTest = g.dijkstras("seattle");
-		System.out.println("Player 1 Distances from each City");
-		for(String k : shortestTest.keySet())
-			System.out.println(k + " " + shortestTest.get(k));
-	}
+	public static HashMap<String, HashSet<String>> regions;
 
 	public Graph() throws IOException {
 		cities = new LinkedHashMap<>();
+		regions = new HashMap<>();
 
 		BufferedReader f = new BufferedReader(new FileReader("cityInfo.txt"));
 		for (int i = 0; i < 42; i++) {
 			StringTokenizer temp = new StringTokenizer(f.readLine());
 			String color = temp.nextToken();
 			String name = temp.nextToken();
-			cities.put(name, new City(color, name, i));
+			int minX = Integer.parseInt(temp.nextToken());
+			int minY = Integer.parseInt(temp.nextToken());
+			int maxX = Integer.parseInt(temp.nextToken());
+			int maxY = Integer.parseInt(temp.nextToken());
+			cities.put(name, new City(color, name, i, minX, minY, maxX, maxY));
 		}
 
 		for (String cityName : cities.keySet()) {
@@ -37,6 +33,16 @@ public class Graph {
 			while (temp.hasMoreTokens())
 				cities.get(cityName)
 						.addPath(new Path(cities.get(temp.nextToken()), Integer.parseInt(temp.nextToken())));
+		}
+		
+		f = new BufferedReader(new FileReader("regions.txt"));
+		for(int i = 0; i < 6; i++) {
+			String region = f.readLine();
+			regions.put(region, new HashSet<>());
+			
+			StringTokenizer temp = new StringTokenizer(f.readLine());
+			while(temp.hasMoreTokens())
+				regions.get(region).add(temp.nextToken());
 		}
 	}
 
