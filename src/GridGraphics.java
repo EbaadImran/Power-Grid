@@ -24,10 +24,10 @@ public class GridGraphics extends JFrame {
             {
             	System.out.println(e.getX() + " " + e.getY());
             	if(panel.getScreen() == 0) { //start screen
-            		panel.setScreen(1); //change screen
+            		panel.setScreen(1);
             	}
             	else if(panel.getScreen() == 1) { //choose regions
-            		if(e.getX() >= 70 && e.getX() <= 170) { //remove
+            		if(e.getX() >= 70 && e.getX() <= 170) { 
             			int i = (e.getY()-910) / 20;
             			int s = 0;
             			String ans = null;
@@ -41,7 +41,7 @@ public class GridGraphics extends JFrame {
             			if(ans != null)
             				board.removeRegion(ans);
             		}
-            		if(e.getX() >= 370 && e.getX() <= 470) { //select region
+            		if(e.getX() >= 370 && e.getX() <= 470) {
             			int i = (e.getY()-910) / 20;
             			int s = 0;
             			String ans = null;
