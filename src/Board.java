@@ -8,6 +8,7 @@ public class Board {
 	private Graph map;
 	private HashSet<String> regions;
 	private HashSet<String> availableRegions;
+	private HashSet<String> locked;
 	private int turn;
 	private int phase;
 	private int step;
@@ -21,12 +22,15 @@ public class Board {
 		regions = new HashSet<>();
 		availableRegions = new HashSet<>();
 		availableRegions.addAll(Graph.regions.keySet());
+		locked = new HashSet<>();
 		market = new Market();
 		turn = 0;
 		phase = 0;
 		step = 0;
 	}
-	
+	public Graph getGraph() {
+		return map;
+	}
 	public int getTurn() {
 		return turn;
 	}
@@ -72,6 +76,15 @@ public class Board {
 			availableRegions.addAll(Graph.regions.get(k));
 		availableRegions.removeAll(regions);
 	}
+	public void lock() {
+		locked.addAll(Graph.regions.keySet());
+		locked.removeAll(regions);
+		for(String k : locked)
+			map.removeRegion(k);
+	}
+	public HashSet<String> getLocked() {
+		return locked;
+	}
 	public ArrayList<Object> getGamestate() {
 		ArrayList<Object> gs = new ArrayList<>();
 		gs.add(players); //0
@@ -79,9 +92,10 @@ public class Board {
 		gs.add(map); //2
 		gs.add(regions); //3
 		gs.add(availableRegions); //4
-		gs.add(turn); //5
-		gs.add(phase); //6
-		gs.add(step); //7
+		gs.add(locked); //5
+		gs.add(turn); //6
+		gs.add(phase); //7
+		gs.add(step); //8
 		return gs;
 	}
 }

@@ -56,10 +56,24 @@ public class GridGraphics extends JFrame {
             		}
             		if(e.getX() >= 1920/2-250 && e.getX() <= 1920/2+250 && e.getY() >= 1080/2-250 && e.getY() <= 1080/2+250 && board.getRegions().size() == 4) {
             			panel.setScreen(2);
+            			board.lock();
             		}	
             	}
             	else if(panel.getScreen() == 2) { //main gui
-            		System.out.println(e.getX() + " " + e.getY());
+            		if(panel.getCityPopup() != null) {
+            			if(e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
+            				panel.setCityPopup(null);
+            		}
+            		else if(e.getX() <= 1335 && e.getY() <= 860 && panel.getCityPopup() == null) {
+            			Graph map = board.getGraph();
+            			for(String k : map.getGraph().keySet()) {
+            				City test = map.getGraph().get(k);
+            				if(e.getX() >= test.getMinX() && e.getX() <= test.getMaxX() && e.getY() >= test.getMinY() && e.getY() <= test.getMaxY() && !board.getLocked().contains(test.getColor())) {
+            					panel.setCityPopup(test);
+            					break;
+            				}
+            			}
+            		}
             	}
             	updateGamestate();
             }

@@ -92,9 +92,26 @@ public class Graph {
 
 		return dist;
 	}
-
+	public void removeRegion(String c) {
+		for(String k : cities.keySet()) {
+			City city = cities.get(k);
+			if(city.getColor().equals(c)) {
+				city.clearEdges();
+			}
+			else {
+				for(int i = 0; i < city.getEdges().size(); i++) {
+					Path path = city.getEdges().get(i);
+					if(path.getToCity().getColor().equals(c))
+						city.getEdges().remove(i);
+				}
+			}
+		}
+	}
 	public City getCity(String name) {
 		return cities.get(name);
+	}
+	public LinkedHashMap<String, City> getGraph() {
+		return cities;
 	}
 
 	public String toString() {

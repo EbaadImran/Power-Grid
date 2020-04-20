@@ -13,7 +13,10 @@ public class Player implements Comparable<Player> {
 		turn = t;
 		money = 50;
 	}
-
+	public int getTurn() {
+		return turn;
+	}
+	
 	public int getMoney() {
 		return money;
 	}
