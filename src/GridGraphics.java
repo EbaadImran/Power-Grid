@@ -23,10 +23,10 @@ public class GridGraphics extends JFrame {
             public void mousePressed(MouseEvent e)
             {
             	System.out.println(e.getX() + " " + e.getY());
-            	if(panel.getScreen() == 0) {
+            	if(panel.getScreen() == 0) { //start screen
             		panel.setScreen(1);
             	}
-            	else if(panel.getScreen() == 1) {
+            	else if(panel.getScreen() == 1) { //choose region
             		if(e.getX() >= 70 && e.getX() <= 170) {
             			int i = (e.getY()-910) / 20;
             			int s = 0;
