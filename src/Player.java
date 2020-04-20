@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Player implements Comparable<Player> {
 	private Card[] plants;
@@ -5,6 +6,7 @@ public class Player implements Comparable<Player> {
 	private int[] maxStorage;
 	private int money;
 	private int turn;
+	private ArrayList<String> cities;
 
 	public Player(int t) {
 		plants = new Card[3];
@@ -12,6 +14,7 @@ public class Player implements Comparable<Player> {
 		maxStorage = new int[4];
 		turn = t;
 		money = 50;
+		cities = new ArrayList<>();
 	}
 	public int getTurn() {
 		return turn;
@@ -53,8 +56,25 @@ public class Player implements Comparable<Player> {
 		return c;
 	}
 	
+	public void addCity(String n) {
+		cities.add(n);
+	}
+	
+	public int getNumCities() {
+		return cities.size();
+	}
+	
+	public int biggestPlant() {
+		int big = Integer.MIN_VALUE;
+		for(Card k : plants)
+			big = Math.max(big, k.getNum());
+		return big;
+	}
+	
 	//FINISH LATER
 	public int compareTo(Player oth) {
-		return 0;
+		if(getNumCities() == oth.getNumCities())
+			return oth.biggestPlant() - biggestPlant();
+		return oth.getNumCities() - getNumCities();
 	}
 }

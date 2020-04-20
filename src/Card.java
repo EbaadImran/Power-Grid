@@ -1,5 +1,5 @@
 
-public class Card {
+public class Card implements Comparable<Card>{
 	private int num;
 	private Resource res;
 	private int cost;
@@ -40,8 +40,11 @@ public class Card {
 		return maxCities;
 	}
 
-	
 	public void setMaxCities(int maxCities) {
 		this.maxCities = maxCities;
+	}
+	
+	public int compareTo(Card oth) {
+		return num - oth.num;
 	}
 }

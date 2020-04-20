@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Board {
@@ -13,6 +14,7 @@ public class Board {
 	private int phase;
 	private int step;
 	public static final String[] TURN_COLORS = {"RED", "BLUE", "GREEN", "PURPLE"};
+	public static final int[] PAYOUT = {10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134, 138, 142, 145, 148, 150};
 	
 	public Board() throws IOException {
 		players = new Player[4];
@@ -36,18 +38,26 @@ public class Board {
 	}
 	public void nextTurn() {
 		turn = (turn + 1) % 4;
+		if(turn == 0)
+			nextPhase();
 	}
 	public int getPhase() {
 		return phase;
 	}
 	public void nextPhase() {
 		phase = (phase + 1) % 5;
+		if(phase == 0)
+			turnOrder();
 	}
 	public int getStep() {
 		return step;
 	}
 	public void setStep(int step) {
 		this.step = step;
+	}
+	public void turnOrder() {
+		Arrays.sort(players);
+		nextPhase();
 	}
 	public HashSet<String> getRegions() {
 		return regions;
@@ -84,6 +94,12 @@ public class Board {
 	}
 	public HashSet<String> getLocked() {
 		return locked;
+	}
+	public boolean checkWin() {
+		for(Player k : players)
+			if(k.getNumCities() == 17)
+				return true;
+		return false;
 	}
 	public ArrayList<Object> getGamestate() {
 		ArrayList<Object> gs = new ArrayList<>();
