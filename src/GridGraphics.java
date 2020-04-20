@@ -26,7 +26,7 @@ public class GridGraphics extends JFrame {
             	if(panel.getScreen() == 0) { //start screen
             		panel.setScreen(1);
             	}
-            	else if(panel.getScreen() == 1) { //choose region
+            	else if(panel.getScreen() == 1) { //choose regions
             		if(e.getX() >= 70 && e.getX() <= 170) {
             			int i = (e.getY()-910) / 20;
             			int s = 0;
