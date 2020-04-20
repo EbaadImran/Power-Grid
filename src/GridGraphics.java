@@ -28,7 +28,7 @@ public class GridGraphics extends JFrame {
             	}
             	else if(panel.getScreen() == 1) {
             		if(e.getX() >= 70 && e.getX() <= 170) {
-            			int i = (e.getY()-910) / 25;
+            			int i = (e.getY()-910) / 20;
             			int s = 0;
             			String ans = null;
             			for(String k : board.getRegions()) {
@@ -42,7 +42,7 @@ public class GridGraphics extends JFrame {
             				board.removeRegion(ans);
             		}
             		if(e.getX() >= 370 && e.getX() <= 470) {
-            			int i = (e.getY()-910) / 25;
+            			int i = (e.getY()-910) / 20;
             			int s = 0;
             			String ans = null;
             			for(String k : board.getAvailableRegions()) {
@@ -55,7 +55,9 @@ public class GridGraphics extends JFrame {
             			if(ans != null)
             				board.addRegion(ans);
             		}
-            			
+            		if(e.getX() >= 1920/2-250 && e.getX() <= 1920/2+250 && e.getY() >= 1080/2-250 && e.getY() <= 1080/2+250 && board.getRegions().size() == 4) {
+            			panel.setScreen(2);
+            		}	
             	}
             	updateGamestate();
             }

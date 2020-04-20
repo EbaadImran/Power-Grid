@@ -50,7 +50,7 @@ public class GridPanel extends JPanel {
 			for(String k : availableRegions) {
 				g.setColor(colors.get(k));
 				g.drawString(k, 375, y);
-				y += 25;
+				y += 20;
 			}
 			
 			y = 925;
@@ -58,7 +58,7 @@ public class GridPanel extends JPanel {
 			for(String k : regions) {
 				g.setColor(colors.get(k));
 				g.drawString(k, 75, y);
-				y += 25;
+				y += 20;
 			}
 			
 			if(regions.size() == 4) {
