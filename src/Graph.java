@@ -52,10 +52,8 @@ public class Graph {
 		for (String k : cities.keySet())
 			dist.put(k, Integer.MAX_VALUE);
 		dist.put(src, 0);
-
 		TreeMap<Integer, ArrayList<String>> pq = new TreeMap<>();
 		HashMap<String, Integer> pqHelper = new HashMap<>();
-
 		pq.put(0, new ArrayList<>());
 		pq.get(0).add(src);
 		pqHelper.put(src, 0);
@@ -65,9 +63,7 @@ public class Graph {
 			pqHelper.remove(id);
 			if (pq.get(smallDist).isEmpty())
 				pq.remove(smallDist);
-
 			vis.add(id);
-
 			if (smallDist > dist.get(id))
 				continue;
 			for (Path k : cities.get(id).getEdges()) {
