@@ -22,7 +22,6 @@ public class GridGraphics extends JFrame {
         {
             public void mousePressed(MouseEvent e)
             {
-            	System.out.println(e.getX() + " " + e.getY());
             	if(panel.getScreen() == 0) { //start screen
             		panel.setScreen(1);
             	}
@@ -58,6 +57,9 @@ public class GridGraphics extends JFrame {
             		if(e.getX() >= 1920/2-250 && e.getX() <= 1920/2+250 && e.getY() >= 1080/2-250 && e.getY() <= 1080/2+250 && board.getRegions().size() == 4) {
             			panel.setScreen(2);
             		}	
+            	}
+            	else if(panel.getScreen() == 2) { //main gui
+            		System.out.println(e.getX() + " " + e.getY());
             	}
             	updateGamestate();
             }

@@ -68,6 +68,9 @@ public class GridPanel extends JPanel {
 				g.drawString("LOCK IN", 1920/2-100, 1080/2+160);
 			}
 		}
+		else if(screen == 2) {
+			g.drawImage(new ImageIcon("gui.png").getImage(), 0, 0, 1920, 1080, null);
+		}
 	}
 	public void setGamestate(ArrayList<Object> g) {
 		gs = g;
