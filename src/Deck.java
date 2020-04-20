@@ -21,10 +21,13 @@ public class Deck {
 			deck.add(new Card(Integer.parseInt(temp.nextToken()), Integer.parseInt(temp.nextToken()),
 					Integer.parseInt(temp.nextToken()), Integer.parseInt(temp.nextToken())));
 		}
+		
 		for (int i = 0; i < 8; i++)
 			market[i] = deck.remove(0);
-		
 		Collections.shuffle(deck);
+		for(int i = 0; i < 4; i++)
+			deck.remove((int) (Math.random() * deck.size()));
+		
 		deck.add(0, new Card(13, 5, 0, 1));
 		deck.add(new Card(-1, -1, -1, -1));
 	}
