@@ -45,7 +45,17 @@ public class Graph {
 				regions.get(region).add(temp.nextToken());
 		}
 	}
-
+	public int shortestToPlayer(int t, String c) {
+		LinkedHashMap<String, Integer> dist = dijkstras(c);
+		int shortest = Integer.MAX_VALUE;
+		for(String k : dist.keySet()) {
+			if(cities.get(k).occupantsSet().contains(t) && !k.equals(c))
+				shortest = Math.min(shortest, dist.get(k));
+		}
+		if(shortest == Integer.MAX_VALUE)
+			shortest = 0;
+		return shortest;
+	}
 	public LinkedHashMap<String, Integer> dijkstras(String src) {
 		LinkedHashMap<String, Integer> dist = new LinkedHashMap<>();
 		HashSet<String> vis = new HashSet<>();

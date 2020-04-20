@@ -96,7 +96,19 @@ public class GridPanel extends JPanel {
 				g.setFont(new Font("Courier", Font.BOLD, 35));
 				g.drawString(name, 510, 450);
 				
+				int dist = map.shortestToPlayer(players[turn].getTurn(), cityPopup.getName());
+				int price = dist + (cityPopup.nextAvailableSpot() + 2) * 5;
+				HashSet<Integer> occ = cityPopup.occupantsSet();
+				
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
+				g.setFont(new Font("Courier", Font.BOLD, 15));
+				g.drawString(cityPopup.nextAvailableSpot() <= step && !occ.contains(players[turn].getTurn()) ? "$" + price + " (Distance: " + dist + ")" : "UNAVAILABLE", 620, 498);
+				String displayOcc = "";
+				for(int k : occ)
+					displayOcc += Board.TURN_COLORS[k];
+				if(displayOcc.equals(""))
+					displayOcc = "NONE";
+				g.drawString(displayOcc, 700, 525);
 			}
 		}
 	}

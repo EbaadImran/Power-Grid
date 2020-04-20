@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class City 
 {
@@ -8,6 +9,7 @@ public class City
 	private int index;
 	private int minX, minY, maxX, maxY;
 	private int[] occupants;
+	private HashSet<Integer> occupantsSet;
 	private ArrayList<Path> paths;
 
 	public City(String c, String n, int i, int lx, int ly, int rx, int ry) {
@@ -19,8 +21,12 @@ public class City
 		setMaxX(rx);
 		setMaxY(ry);
 		occupants = new int[3];
+		occupantsSet = new HashSet<>();
 		Arrays.fill(occupants, -1);
 		paths = new ArrayList<>();
+	}
+	public HashSet<Integer> occupantsSet() {
+		return occupantsSet;
 	}
 	public int[] occupants() {
 		return occupants;
@@ -30,9 +36,16 @@ public class City
 		for(int i = 0; i < 3; i++) {
 			if(occupants[i] == -1) {
 				occupants[i] = t;
+				occupantsSet.add(t);
 				break;
 			}
 		}
+	}
+	public int nextAvailableSpot() {
+		for(int i = 0; i < 3; i++)
+			if(occupants[i] == -1)
+				return i;
+		return 3;
 	}
 	public void addPath(Path path) {
 		paths.add(path);
