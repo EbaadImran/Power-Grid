@@ -110,6 +110,12 @@ public class GridPanel extends JPanel {
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
 			}
+			
+			Deck deck = (Deck) gs.get(9);
+			Card[] plants = deck.getMarket();
+			for(int i = 0; i < 4; i++) {
+				
+			}
 		}
 	}
 	public void setGamestate(ArrayList<Object> g) {

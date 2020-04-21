@@ -6,6 +6,7 @@ import java.util.HashSet;
 public class Board {
 	private Player[] players;
 	private Market market;
+	private Deck deck;
 	private Graph map;
 	private HashSet<String> regions;
 	private HashSet<String> availableRegions;
@@ -22,6 +23,7 @@ public class Board {
 		for(int i = 0; i < 4; i++)
 			players[i] = new Player(i);
 		map = new Graph();
+		deck = new Deck();
 		regions = new HashSet<>();
 		availableRegions = new HashSet<>();
 		availableRegions.addAll(Graph.regions.keySet());
@@ -113,6 +115,7 @@ public class Board {
 		gs.add(turn); //6
 		gs.add(phase); //7
 		gs.add(step); //8
+		gs.add(deck); //9
 		return gs;
 	}
 }
