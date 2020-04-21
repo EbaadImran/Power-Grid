@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -33,10 +34,22 @@ public class Deck {
 	}
 	public boolean draw() {
 		Card card = deck.remove(0);
-		if(card.getNum() == -1) {
+		if(card.getNum() == 0) {
 			return true;
 		}
+		for(int i = 0; i < 8; i++) {
+			if(market[i] == null) {
+				market[i] = card;
+				break;
+			}
+		}
+		Arrays.sort(market);
 		return false;
+	}
+	public Card buyCard(int i) {
+		Card temp = market[i];
+		market[i] = null;
+		return temp;
 	}
 	public Card[] getMarket() {
 		return market;
