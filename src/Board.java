@@ -15,6 +15,7 @@ public class Board {
 	private int step;
 	public static final String[] TURN_COLORS = {"RED", "BLUE", "GREEN", "PURPLE"};
 	public static final int[] PAYOUT = {10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134, 138, 142, 145, 148, 150};
+	public static final int[][] RESET_MARKET = {{5, 3, 2, 1}, {6, 4, 3, 2}, {4, 5, 4, 2}};
 	
 	public Board() throws IOException {
 		players = new Player[4];
