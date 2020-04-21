@@ -60,18 +60,30 @@ public class GridGraphics extends JFrame {
             		}	
             	}
             	else if(panel.getScreen() == 2) { //main gui
-            		if(panel.getCityPopup() != null) {
-            			if(e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
-            				panel.setCityPopup(null);
-            		}
-            		else if(e.getX() <= 1335 && e.getY() <= 860 && panel.getCityPopup() == null) {
-            			Graph map = board.getGraph();
-            			for(String k : map.getGraph().keySet()) {
-            				City test = map.getGraph().get(k);
-            				if(e.getX() >= test.getMinX() && e.getX() <= test.getMaxX() && e.getY() >= test.getMinY() && e.getY() <= test.getMaxY() && !board.getLocked().contains(test.getColor())) {
-            					panel.setCityPopup(test);
-            					break;
+            		System.out.println(e.getX() + " " + e.getY());
+            		if(board.getPhase() == 3) {
+            			if(panel.getCityPopup() == null)
+            			{
+            				Graph map = board.getGraph();
+            				for(String k : map.getGraph().keySet()) {
+	            				City test = map.getGraph().get(k);
+	            				if(e.getX() >= test.getMinX() && e.getX() <= test.getMaxX() && e.getY() >= test.getMinY() && e.getY() <= test.getMaxY() && !board.getLocked().contains(test.getColor())) {
+	            					panel.setCityPopup(test);
+	            					break;
+	            				}
             				}
+            			}
+            			else {
+            				if(e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
+                				panel.setCityPopup(null);
+            			}
+            		}
+            		else if(board.getPhase() == 1) {
+            			if(!panel.getAuctionPopup() && e.getX() >= 1547 && e.getY() >= 366 && e.getX() <= 1666 && e.getY() <= 411)
+            				panel.setAuctionPopup(true);
+            			else {
+            				if(e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
+            					panel.setAuctionPopup(false);
             			}
             		}
             	}

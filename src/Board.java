@@ -7,6 +7,7 @@ public class Board {
 	private Player[] players;
 	private Market market;
 	private Deck deck;
+	private Auction auction;
 	private Graph map;
 	private HashSet<String> regions;
 	private HashSet<String> availableRegions;
@@ -31,6 +32,7 @@ public class Board {
 		}
 		map = new Graph();
 		deck = new Deck();
+		auction = new Auction();
 		regions = new HashSet<>();
 		availableRegions = new HashSet<>();
 		availableRegions.addAll(Graph.regions.keySet());
@@ -123,6 +125,7 @@ public class Board {
 		gs.add(phase); //7
 		gs.add(step); //8
 		gs.add(deck); //9
+		gs.add(auction); //10
 		return gs;
 	}
 }

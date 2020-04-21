@@ -13,12 +13,14 @@ public class GridPanel extends JPanel {
 	private int screen;
 	private HashMap<String, Color> colors;
 	private City cityPopup;
+	private boolean auctionPopup;
 	
 	public GridPanel() {
 		gs = new ArrayList<Object>();
 		setSize(1920, 1080);
 		screen = 0;
 		cityPopup = null;
+		auctionPopup = false;
 		colors = new HashMap<>();
 		colors.put("PURPLE", new Color(148, 105, 125));
 		colors.put("BLUE", new Color(93, 145, 144));
@@ -75,6 +77,8 @@ public class GridPanel extends JPanel {
 			
 			Player[] players = (Player[]) gs.get(0);
 			Graph map = (Graph) gs.get(2);
+			Deck deck = (Deck) gs.get(9);
+			Card[] plants = deck.getMarket();
 			HashSet<String> locked = (HashSet<String>) gs.get(5);
 			int step = (int) gs.get(8);
 			int phase = (int) gs.get(7);
@@ -110,9 +114,14 @@ public class GridPanel extends JPanel {
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
 			}
+			else if(auctionPopup) {
+				g.drawImage(new ImageIcon("auction.png").getImage(), 490, 350, 329, 255, null);
+				g.drawImage(new ImageIcon("x.png").getImage(), 790, 360, 15, 15, null);
+				for(int i = 0; i < 4; i++) {
+					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i*80 + 497, 400, 75, 75, null);
+				}
+			}
 			
-			Deck deck = (Deck) gs.get(9);
-			Card[] plants = deck.getMarket();
 			for(int i = 0; i < 4; i++) {
 				g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i*130 + 1360, 50, 125, 125, null);
 				g.drawImage(new ImageIcon("" + plants[i+4].getNum() + ".png").getImage(), i*130 + 1360, 180, 125, 125, null);
@@ -143,5 +152,11 @@ public class GridPanel extends JPanel {
 	}
 	public City getCityPopup() {
 		return cityPopup;
+	}
+	public void setAuctionPopup(boolean b) {
+		auctionPopup = b;
+	}
+	public boolean getAuctionPopup() {
+		return auctionPopup;
 	}
 }
