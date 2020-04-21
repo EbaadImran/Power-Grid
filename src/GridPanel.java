@@ -114,7 +114,18 @@ public class GridPanel extends JPanel {
 			Deck deck = (Deck) gs.get(9);
 			Card[] plants = deck.getMarket();
 			for(int i = 0; i < 4; i++) {
-				
+				g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i*130 + 1360, 50, 125, 125, null);
+				g.drawImage(new ImageIcon("" + plants[i+4].getNum() + ".png").getImage(), i*130 + 1360, 180, 125, 125, null);
+			}
+			
+			g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
+			g.setFont(new Font("Courier", Font.BOLD, 30));
+			g.drawString(Board.TURN_COLORS[players[turn].getTurn()], 1575, 470);
+			g.drawString("" + (step + 1), 1780, 470);
+			g.drawString(Board.PHASES[phase], 1478, 527);
+			
+			for(int i = 0; i < 4; i++) {
+				g.drawImage(new ImageIcon(Board.TURN_COLORS[players[i].getTurn()] + ".png").getImage(), 1525 + i*75, 925, 70, 70, null);
 			}
 		}
 	}

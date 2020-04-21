@@ -15,6 +15,7 @@ public class Board {
 	private int phase;
 	private int step;
 	public static final String[] TURN_COLORS = {"RED", "BLUE", "GREEN", "PURPLE"};
+	public static final String[] PHASES = {"ORDER", "AUCTION", "BUYING", "BUILDING", "BUREAUCRACY"};
 	public static final int[] PAYOUT = {10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134, 138, 142, 145, 148, 150};
 	public static final int[][] RESET_MARKET = {{5, 3, 2, 1}, {6, 4, 3, 2}, {4, 5, 4, 2}};
 	
@@ -22,6 +23,12 @@ public class Board {
 		players = new Player[4];
 		for(int i = 0; i < 4; i++)
 			players[i] = new Player(i);
+		for(int i = 0; i < 4; i++) {
+			int r = (int) (Math.random() * 4);
+			Player temp = players[i];
+			players[i] = players[r];
+			players[r] = temp;
+		}
 		map = new Graph();
 		deck = new Deck();
 		regions = new HashSet<>();
@@ -30,7 +37,7 @@ public class Board {
 		locked = new HashSet<>();
 		market = new Market();
 		turn = 0;
-		phase = 0;
+		phase = 1;
 		step = 0;
 	}
 	public Graph getGraph() {
