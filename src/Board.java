@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Stack;
 
 public class Board {
 	private Player[] players;
@@ -12,6 +13,8 @@ public class Board {
 	private HashSet<String> regions;
 	private HashSet<String> availableRegions;
 	private HashSet<String> locked;
+	private Stack<String> lockOrder;
+	private ArrayList<Integer> auctionOrder;
 	private int turn;
 	private int phase;
 	private int step;
@@ -37,9 +40,12 @@ public class Board {
 		availableRegions = new HashSet<>();
 		availableRegions.addAll(Graph.regions.keySet());
 		locked = new HashSet<>();
+		lockOrder = new Stack<>();
+		auctionOrder = new ArrayList<>();
 		market = new Market();
 		turn = 0;
-		phase = 1;
+		phase = 0;
+		nextPhase();
 		step = 0;
 	}
 	public Graph getGraph() {
@@ -60,6 +66,34 @@ public class Board {
 		phase = (phase + 1) % 5;
 		if(phase == 0)
 			turnOrder();
+		else if(phase == 1) {
+			for(int i = 0; i < 4; i++)
+				auctionOrder.add(players[i].getTurn());
+		}
+	}
+	public Player[] getPlayers() {
+		return players;
+	}
+	public Deck getDeck() {
+		return deck;
+	}
+	public void removeFromAuction(int t) {
+		for(int i = 0; i < auctionOrder.size(); i++)
+			if(auctionOrder.get(i) == t) {
+				auctionOrder.remove(i);
+				break;
+			}
+		if(auctionOrder.size() == 0) {
+			nextPhase();
+		}
+		else {
+			for(int i = 0; i < 4; i++) {
+				if(players[i].getTurn() == auctionOrder.get(0)) {
+					turn = i;
+				}
+			}
+		}
+				
 	}
 	public int getStep() {
 		return step;
@@ -76,10 +110,11 @@ public class Board {
 	}
 	public void addRegion(String r) {
 		regions.add(r);
+		lockOrder.push(r);
 		setAvailableRegions();
 	}
-	public void removeRegion(String r) {
-		regions.remove(r);
+	public void removeRegion() {
+		regions.remove(lockOrder.pop());
 		setAvailableRegions();
 	}
 	public HashSet<String> getAvailableRegions() {

@@ -13,14 +13,16 @@ public class GridPanel extends JPanel {
 	private int screen;
 	private HashMap<String, Color> colors;
 	private City cityPopup;
-	private boolean auctionPopup;
+	private Card auctionCard;
+	private int auctionPopup;
+	private int auctionPrice;
 	
 	public GridPanel() {
 		gs = new ArrayList<Object>();
 		setSize(1920, 1080);
 		screen = 0;
 		cityPopup = null;
-		auctionPopup = false;
+		auctionPopup = 0;
 		colors = new HashMap<>();
 		colors.put("PURPLE", new Color(148, 105, 125));
 		colors.put("BLUE", new Color(93, 145, 144));
@@ -64,6 +66,9 @@ public class GridPanel extends JPanel {
 				g.drawString(k, 75, y);
 				y += 20;
 			}
+			
+			if(regions.size() >= 1)
+				g.drawImage(new ImageIcon("undo.png").getImage(), 200, 910, 50, 50, null);
 			
 			if(regions.size() == 4) {
 				g.drawImage(new ImageIcon("lock.png").getImage(), 1920/2-250, 1080/2-250, 500, 500, null);
@@ -114,11 +119,30 @@ public class GridPanel extends JPanel {
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
 			}
-			else if(auctionPopup) {
-				g.drawImage(new ImageIcon("auction.png").getImage(), 490, 350, 329, 255, null);
-				g.drawImage(new ImageIcon("x.png").getImage(), 790, 360, 15, 15, null);
+			else if(auctionPopup >= 1) {
+				g.drawImage(new ImageIcon("auction.png").getImage(), 408, 286, 493, 382, null);
+				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
 				for(int i = 0; i < 4; i++) {
-					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i*80 + 497, 400, 75, 75, null);
+					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i*120 + 420, 360, 110, 110, null);
+				}
+				if(auctionPopup == 1) {
+					g.setColor(colors.get("pri"));
+					g.fillOval(604, 500, 100, 50);
+					g.setColor(colors.get("sec"));
+					g.setFont(new Font("Courier", Font.BOLD, 25));
+					g.drawString("PASS", 623, 530);
+				}
+				else if(auctionPopup == 2) {
+					g.drawImage(new ImageIcon("" + auctionCard.getNum() + ".png").getImage(), 450, 500, 100, 100, null);
+					g.drawImage(new ImageIcon("undo.png").getImage(), 575, 525, 50, 50, null);
+					g.setColor(colors.get("pri"));
+					g.setFont(new Font("Courier", Font.BOLD, 50));
+					g.drawString("-", 640, 565);
+					g.setFont(new Font("Courier", Font.BOLD, 25));
+					g.drawString("" + auctionPrice, 680, 558);
+					g.setFont(new Font("Courier", Font.BOLD, 50));
+					g.drawString("+", 720, 565);
+					g.drawImage(new ImageIcon("confirm.png").getImage(), 770, 525, 50, 50, null);
 				}
 			}
 			
@@ -153,10 +177,22 @@ public class GridPanel extends JPanel {
 	public City getCityPopup() {
 		return cityPopup;
 	}
-	public void setAuctionPopup(boolean b) {
-		auctionPopup = b;
+	public void setAuctionPopup(int phase) {
+		auctionPopup = phase;
 	}
-	public boolean getAuctionPopup() {
+	public int getAuctionPopup() {
 		return auctionPopup;
+	}
+	public void setAuctionCard(Card c) {
+		auctionCard = c;
+	}
+	public Card getAuctionCard() {
+		return auctionCard;
+	}
+	public void setPrice(int p) {
+		auctionPrice = p;
+	}
+	public int getPrice() {
+		return auctionPrice;
 	}
 }

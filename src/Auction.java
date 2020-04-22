@@ -38,7 +38,9 @@ public class Auction {
 
 	public void setAuction(Card c, int bid, int i, ArrayList<Integer> o) {
 		auctionCard = c;
-		order = o;
+		order = new ArrayList<>();
+		for(int k : o)
+			order.add(k);
 		for(int k = order.size() - 1; k >= 0; k--)
 			if(!participants.contains(order.get(k)))
 				order.remove(k);
