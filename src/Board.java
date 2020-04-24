@@ -35,7 +35,7 @@ public class Board {
 		}
 		map = new Graph();
 		deck = new Deck();
-		auction = new Auction();
+		auction = new Auction(players);
 		regions = new HashSet<>();
 		availableRegions = new HashSet<>();
 		availableRegions.addAll(Graph.regions.keySet());

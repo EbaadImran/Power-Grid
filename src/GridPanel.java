@@ -83,6 +83,7 @@ public class GridPanel extends JPanel {
 			Player[] players = (Player[]) gs.get(0);
 			Graph map = (Graph) gs.get(2);
 			Deck deck = (Deck) gs.get(9);
+			Auction auction = (Auction) gs.get(10);
 			Card[] plants = deck.getMarket();
 			HashSet<String> locked = (HashSet<String>) gs.get(5);
 			int step = (int) gs.get(8);
@@ -146,6 +147,7 @@ public class GridPanel extends JPanel {
 				}
 				else if(auctionPopup == 3) {
 					g.drawImage(new ImageIcon("" + auctionCard.getNum() + ".png").getImage(), 450, 500, 100, 100, null);
+					g.drawImage(new ImageIcon("pass.png").getImage(), 575, 525, 50, 50, null);
 					g.setColor(colors.get("pri"));
 					g.setFont(new Font("Courier", Font.BOLD, 50));
 					g.drawString("-", 640, 565);
@@ -154,6 +156,18 @@ public class GridPanel extends JPanel {
 					g.setFont(new Font("Courier", Font.BOLD, 50));
 					g.drawString("+", 720, 565);
 					g.drawImage(new ImageIcon("confirm.png").getImage(), 770, 525, 50, 50, null);
+					
+					int highestBid = auction.getHighestBid();
+					int highestBidIndex = auction.getHighestBidIndex();
+					String auctionColor = Board.TURN_COLORS[auction.getOrder().get(auction.getTurn())];
+					g.setFont(new Font("Courier", Font.BOLD, 25));
+					g.setColor(colors.get("pri"));
+					g.drawString("Highest Bid: ", 575, 600);
+					g.drawString("Auction Turn: ", 575, 640);
+					g.setColor(colors.get(Board.TURN_COLORS[auction.getOrder().get(auction.getHighestBidIndex())]));
+					g.drawString("" + highestBid, 760, 600);
+					g.setColor(colors.get(auctionColor));
+					g.drawString(auctionColor, 775, 640);
 				}
 			}
 			

@@ -8,8 +8,9 @@ public class Auction {
 	private int turn;
 	private HashSet<Integer> participants;
 	private ArrayList<Integer> order;
+	private Player[] players;
 
-	public Auction() {
+	public Auction(Player[] p) {
 		auctionCard = null;
 		highestBid = 0;
 		highestBidIndex = -1;
@@ -18,8 +19,11 @@ public class Auction {
 		for (int i = 0; i < 4; i++)
 			participants.add(i);
 		order = null;
+		players = p;
 	}
-	
+	public ArrayList<Integer> getOrder() {
+		return order;
+	}
 	public Card getCard() {
 		return auctionCard;
 	}
@@ -56,14 +60,13 @@ public class Auction {
 	
 	public void nextTurn() {
 		turn = (turn + 1) % order.size();
+		while(players[turn].getMoney() <= highestBid) {
+			pass(turn);
+		}
 	}
 
 	public void pass(int t) {
-		for(int i = 0; i < order.size(); i++)
-			if(order.get(i) == t) {
-				order.remove(i);
-				return;
-			}	
+		order.remove(t);
 		turn %= order.size();
 	}
 	
