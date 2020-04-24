@@ -70,6 +70,9 @@ public class Board {
 			for(int i = 0; i < 4; i++)
 				auctionOrder.add(players[i].getTurn());
 		}
+		else if(phase == 2) {
+			auction.endPhase();
+		}
 	}
 	public Player[] getPlayers() {
 		return players;
@@ -147,6 +150,16 @@ public class Board {
 	}
 	public HashSet<String> getLocked() {
 		return locked;
+	}
+	public void winAuction(int slot) {
+		int player = auction.getHighestBidIndex();
+		int price = auction.getHighestBid();
+		removeFromAuction(players[player].getTurn());
+		players[player].removeMoney(price);
+		players[player].addPlant(auction.getCard(), slot);
+		auction.bid(0, 0);
+		deck.buyCard(auction.getCard());
+		deck.draw();
 	}
 	public boolean checkWin() {
 		for(Player k : players)

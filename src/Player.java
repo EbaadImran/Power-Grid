@@ -2,20 +2,21 @@ import java.util.ArrayList;
 
 public class Player implements Comparable<Player> {
 	private Card[] plants;
-	private int[] currStorage;
-	private int[] maxStorage;
 	private int money;
 	private int turn;
 	private ArrayList<String> cities;
+	//REDO ALL RESOURCE MANAGEMENT
 
 	public Player(int t) {
 		plants = new Card[3];
-		currStorage = new int[4];
-		maxStorage = new int[4];
 		turn = t;
 		money = 50;
 		cities = new ArrayList<>();
 	}
+	public Card[] getPlants() {
+		return plants;
+	}
+	
 	public int getTurn() {
 		return turn;
 	}
@@ -38,14 +39,17 @@ public class Player implements Comparable<Player> {
 				return true;
 		return false;
 	}
+	public int nextAvailablePlant() {
+		for(int i = 0; i < 3; i++)
+			if(plants[i] == null)
+				return i;
+		return -1;
+	}
 
 	public void addPlant(Card c, int i) {
 		Card rem = removePlant(i);
 		plants[i] = c;
-		if(rem != null)
-			maxStorage[Resource.resourceToNum(rem.getRes())] -= rem.getCost() * 2;
-		maxStorage[Resource.resourceToNum(c.getRes())] += c.getCost() * 2;
-		currStorage[Resource.resourceToNum(rem.getRes())] = Math.min(currStorage[Resource.resourceToNum(rem.getRes())], maxStorage[Resource.resourceToNum(rem.getRes())]);
+		
 	}
 
 	public Card removePlant(int i) {

@@ -49,12 +49,15 @@ public class Auction {
 			if(!participants.contains(order.get(k)))
 				order.remove(k);
 		turn = i;
-		bid(bid, i);
+		bid(bid, order.indexOf(players[i].getTurn()));
 	}
 	
 	public void bid(int bid, int i) {
 		highestBid = bid;
-		highestBidIndex = i;
+		for(int k = 0; k < players.length; k++) {
+			if(players[k].getTurn() == order.get(i))
+				highestBidIndex = k;
+		}
 		nextTurn();
 	}
 	

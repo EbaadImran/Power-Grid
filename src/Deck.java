@@ -46,10 +46,11 @@ public class Deck {
 		Arrays.sort(market);
 		return false;
 	}
-	public Card buyCard(int i) {
-		Card temp = market[i];
-		market[i] = null;
-		return temp;
+	public void buyCard(Card c) {
+		for(int i = 0; i < market.length; i++) {
+			if(c.getNum() == market[i].getNum())
+				market[i] = null;
+		}
 	}
 	public Card[] getMarket() {
 		return market;

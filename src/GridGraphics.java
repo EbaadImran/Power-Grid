@@ -49,7 +49,6 @@ public class GridGraphics extends JFrame {
             		}	
             	}
             	else if(panel.getScreen() == 2) { //main gui
-            		System.out.println(e.getX() + " " + e.getY());
             		if(board.getPhase() == 3) {
             			if(panel.getCityPopup() == null)
             			{
@@ -121,8 +120,26 @@ public class GridGraphics extends JFrame {
             						panel.setPrice(panel.getPrice() + 1);
             					}
             				}
+            				if(panel.getAuctionPopup() == 3 && board.getAuction().checkEnd()) {
+            					Player winner = board.getPlayers()[board.getAuction().getHighestBidIndex()];
+            					if(winner.availablePlant())
+            						board.winAuction(winner.nextAvailablePlant());
+            					else
+            						//MAKE DISCARD POWERPLANT
+            					board.winAuction(0);
+            					panel.setAuctionPopup(0);
+            					panel.setAuctionCard(null);
+            				}
             			}
             		}
+            		
+            		if(panel.getCityPopup() == null && panel.getAuctionPopup() == 0) { //NO POPUPS 
+            			//1525 + i*75, 925, 70, 70
+            			int i = (e.getX() - 1525) / 75;
+            			if(i > -1 && i < 4 && e.getY() >= 925 && e.getY() <= 995)
+            				panel.setPlayer(i);
+            		}
+            			
             	}
             	updateGamestate();
             }
