@@ -144,6 +144,17 @@ public class GridPanel extends JPanel {
 					g.drawString("+", 720, 565);
 					g.drawImage(new ImageIcon("confirm.png").getImage(), 770, 525, 50, 50, null);
 				}
+				else if(auctionPopup == 3) {
+					g.drawImage(new ImageIcon("" + auctionCard.getNum() + ".png").getImage(), 450, 500, 100, 100, null);
+					g.setColor(colors.get("pri"));
+					g.setFont(new Font("Courier", Font.BOLD, 50));
+					g.drawString("-", 640, 565);
+					g.setFont(new Font("Courier", Font.BOLD, 25));
+					g.drawString("" + auctionPrice, 680, 558);
+					g.setFont(new Font("Courier", Font.BOLD, 50));
+					g.drawString("+", 720, 565);
+					g.drawImage(new ImageIcon("confirm.png").getImage(), 770, 525, 50, 50, null);
+				}
 			}
 			
 			for(int i = 0; i < 4; i++) {

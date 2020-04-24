@@ -65,11 +65,15 @@ public class GridGraphics extends JFrame {
             			else {
             				if(e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
                 				panel.setCityPopup(null);
-            			}
+            			} 
             		}
             		else if(board.getPhase() == 1) {
-            			if(panel.getAuctionPopup() == 0 && e.getX() >= 1547 && e.getY() >= 366 && e.getX() <= 1666 && e.getY() <= 411)
-            				panel.setAuctionPopup(1);
+            			if(panel.getAuctionPopup() == 0 && e.getX() >= 1547 && e.getY() >= 366 && e.getX() <= 1666 && e.getY() <= 411) {
+            				if(board.getAuction().getHighestBid() > 0)
+            					panel.setAuctionPopup(3);
+            				else
+            					panel.setAuctionPopup(1);
+            			}
             			else {
             				if(e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325)
             					panel.setAuctionPopup(0);
@@ -95,6 +99,10 @@ public class GridGraphics extends JFrame {
             					}
             					else if(e.getX() >= 722 && e.getX() <= 746 && e.getY() >= 536 && e.getY() <= 565 && panel.getPrice() < board.getPlayers()[board.getTurn()].getMoney()) {
             						panel.setPrice(panel.getPrice() + 1);
+            					}
+            					else if(e.getX() >= 770 && e.getY() >= 525 && e.getX() <= 820 && e.getY() <= 575) {
+            						board.getAuction().setAuction(panel.getAuctionCard(), panel.getPrice(), board.getTurn(), board.getAuctionOrder());
+            						panel.setAuctionPopup(3);
             					}
             				}
             			}

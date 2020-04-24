@@ -44,9 +44,7 @@ public class Auction {
 		for(int k = order.size() - 1; k >= 0; k--)
 			if(!participants.contains(order.get(k)))
 				order.remove(k);
-		for(int k = 0; k < order.size(); k++)
-			if(order.get(k) == i)
-				turn = k;
+		turn = i;
 		bid(bid, i);
 	}
 	

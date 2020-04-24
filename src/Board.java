@@ -77,6 +77,12 @@ public class Board {
 	public Deck getDeck() {
 		return deck;
 	}
+	public Auction getAuction() {
+		return auction;
+	}
+	public ArrayList<Integer> getAuctionOrder() {
+		return auctionOrder;
+	}
 	public void removeFromAuction(int t) {
 		for(int i = 0; i < auctionOrder.size(); i++)
 			if(auctionOrder.get(i) == t) {
