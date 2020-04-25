@@ -103,6 +103,7 @@ public class GridGraphics extends JFrame {
             						board.getAuction().setAuction(panel.getAuctionCard(), panel.getPrice(), board.getTurn(), board.getAuctionOrder());
             						panel.setPrice(panel.getPrice() + 1);
             						panel.setAuctionPopup(3);
+            						System.out.println(board.getAuction().getOrder());
             					}
             				}
             				else if(panel.getAuctionPopup() == 3) {
@@ -117,6 +118,7 @@ public class GridGraphics extends JFrame {
             					}
             					else if(e.getX() >= 770 && e.getY() >= 525 && e.getX() <= 820 && e.getY() <= 575) {
             						board.getAuction().bid(panel.getPrice(), board.getAuction().getTurn());
+            						System.out.println(board.getAuction().getOrder());
             						panel.setPrice(panel.getPrice() + 1);
             					}
             				}

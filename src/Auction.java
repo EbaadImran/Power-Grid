@@ -63,8 +63,20 @@ public class Auction {
 	
 	public void nextTurn() {
 		turn = (turn + 1) % order.size();
-		while(players[turn].getMoney() <= highestBid) {
+		int bt = 0;
+		for(int k = 0; k < players.length; k++) {
+			if(players[k].getTurn() == order.get(turn))
+				bt = k;
+		}
+		System.out.println("START " + Board.TURN_COLORS[players[bt].getTurn()]);
+		System.out.println("ACTUAL " + turn);
+		while(players[bt].getMoney() <= highestBid && bt != highestBidIndex) {
+			System.out.println(Board.TURN_COLORS[players[bt].getTurn()]);
 			pass(turn);
+			for(int k = 0; k < players.length; k++) {
+				if(players[k].getTurn() == order.get(turn))
+					bt = k;
+			}
 		}
 	}
 
