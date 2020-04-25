@@ -5,6 +5,10 @@ public class Market {
 
 	public Market() {
 		markets = new int[4];
+		markets[0] += 24;
+		markets[1] += 18;
+		markets[2] += 6;
+		markets[3] += 2;
 	}
 
 	public void addResource(int res, int amt) {
@@ -21,5 +25,11 @@ public class Market {
 
 	public int getAmount(int res) {
 		return markets[res];
+	}
+	public void refreshMarket(int s) {
+		for(int i = 0; i < 4; i++) {
+			addResource(i, Board.RESET_MARKET[s][i]);
+			markets[i] = Math.max(markets[i], CAP[i]);
+		}
 	}
 }
