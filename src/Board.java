@@ -154,12 +154,13 @@ public class Board {
 	public void winAuction(int slot) {
 		int player = auction.getHighestBidIndex();
 		int price = auction.getHighestBid();
-		removeFromAuction(players[player].getTurn());
-		players[player].removeMoney(price);
-		players[player].addPlant(auction.getCard(), slot);
-		auction.bid(0, 0);
 		deck.buyCard(auction.getCard());
 		deck.draw();
+		players[player].addPlant(auction.getCard(), slot);
+		removeFromAuction(players[player].getTurn());
+		players[player].removeMoney(price);
+		auction.setHighestBid(0);
+		auction.setHighestBid(0);
 	}
 	public boolean checkWin() {
 		for(Player k : players)

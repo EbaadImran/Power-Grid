@@ -48,7 +48,10 @@ public class Auction {
 		for(int k = order.size() - 1; k >= 0; k--)
 			if(!participants.contains(order.get(k)))
 				order.remove(k);
-		turn = i;
+		for(int k = 0; k < order.size(); k++) {
+			if(players[i].getTurn() == order.get(k))
+				turn = k;
+		}
 		bid(bid, order.indexOf(players[i].getTurn()));
 	}
 	
@@ -61,6 +64,12 @@ public class Auction {
 		nextTurn();
 	}
 	
+	public void setHighestBid(int val) {
+		highestBid = val;
+	}
+	public void setIndex(int val) {
+		highestBidIndex = val;
+	}
 	public void nextTurn() {
 		turn = (turn + 1) % order.size();
 		int bt = 0;
