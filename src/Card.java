@@ -4,6 +4,7 @@ public class Card implements Comparable<Card>{
 	private Resource res;
 	private int cost;
 	private int maxCities;
+	private int storage = 0;
 	
 	public Card(int n, int r, int c, int max) {
 		setNum(n);
@@ -44,6 +45,16 @@ public class Card implements Comparable<Card>{
 		this.maxCities = maxCities;
 	}
 	
+	public int getStorage() {
+		return storage;
+	}
+	public void addStorage() {
+		storage += 1;
+	}
+	public void subtractStorage() {
+		storage -= getCost();
+	}
+
 	public int compareTo(Card oth) {
 		return num - oth.num;
 	}
