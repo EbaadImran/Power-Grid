@@ -49,6 +49,7 @@ public class GridGraphics extends JFrame {
             		}	
             	}
             	else if(panel.getScreen() == 2) { //main gui
+            		System.out.println(e.getX() + " " + e.getY());
             		if(board.getPhase() == 3) {
             			if(panel.getCityPopup() == null)
             			{
@@ -72,7 +73,6 @@ public class GridGraphics extends JFrame {
             					panel.setAuctionPopup(3);
             				else
             					panel.setAuctionPopup(1);
-            				//610, 50, 158, 60
             			}
             			else {
             				if(e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325)

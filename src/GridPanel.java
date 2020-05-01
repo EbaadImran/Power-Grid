@@ -86,6 +86,7 @@ public class GridPanel extends JPanel {
 			g.drawImage(new ImageIcon("gui.png").getImage(), 0, 0, 1920, 1080, null);
 			
 			Player[] players = (Player[]) gs.get(0);
+			Market market = (Market) gs.get(1);
 			Graph map = (Graph) gs.get(2);
 			Deck deck = (Deck) gs.get(9);
 			Auction auction = (Auction) gs.get(10);
@@ -134,6 +135,33 @@ public class GridPanel extends JPanel {
 				g.setColor(Color.RED);
 				g.fillRect(140 + i*159, 972, 28, 28);
 			}
+			
+			for(int i = 24 - market.getAmount(0); i < 24; i++) {
+				g.setColor(new Color(125, 74, 0));
+				g.fillOval(50 + (i/3) * 24 + i*45, 940, 30, 30);
+			}
+			for(int i = 24 - market.getAmount(1); i < 24; i++) {
+				g.setColor(Color.BLACK);
+				g.fillOval(50 + (i/3) * 69 + i*30, 972, 28, 28);
+			}
+			for(int i = 24 - market.getAmount(2); i < 24; i++) {
+				g.setColor(new Color(160, 160, 20));
+				g.fillOval(50 + (i/3) * 24 + i*45, 1002, 30, 30);
+			}
+			for(int i = 12 - (market.getAmount(3)); i < 8; i++) {
+				g.setColor(new Color(132, 15, 15));
+				g.fillOval(140 + i*159, 972, 28, 28);
+			}
+			
+			g.setColor(new Color(132, 15, 15));
+			if(market.getAmount(3) >= 4)
+				g.fillOval(1342, 949, 25, 25);
+			if(market.getAmount(3) >= 3)
+				g.fillOval(1405, 949, 25, 25);
+			if(market.getAmount(3) >= 2)
+				g.fillOval(1342, 999, 25, 25);
+			if(market.getAmount(3) >= 1)
+				g.fillOval(1405, 999, 25, 25);
 			
 			if(cityPopup != null) {
 				g.drawImage(new ImageIcon("cityinfo.png").getImage(), 490, 350, 329, 255, null);
