@@ -1,6 +1,8 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,6 +39,8 @@ public class GridPanel extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		
 		if(screen == 0) {
 			g.drawImage(new ImageIcon("powergrid.PNG").getImage(), 0, 0, 1920, 1080, null);
 			g.setFont(new Font("Courier", Font.BOLD, 50));
@@ -91,11 +95,44 @@ public class GridPanel extends JPanel {
 			int phase = (int) gs.get(7);
 			int turn = (int) gs.get(6);
 			
+			if(phase == 1) {
+				g.setColor(colors.get("sec"));
+				g.fillRect(610, 50, 158, 60);
+				g.setColor(colors.get("pri"));
+				g2.setStroke(new BasicStroke(7));
+				g2.drawRect(610, 50, 158, 60);
+				g.setFont(new Font("Courier", Font.BOLD, 18));
+				g.drawString("GO TO AUCTION", 620, 85);
+				
+			}
+			else if(phase == 2) {
+				g.setColor(colors.get("sec"));
+				g.fillRect(610, 50, 158, 60);
+				g.setColor(colors.get("pri"));
+				g2.setStroke(new BasicStroke(7));
+				g2.drawRect(610, 50, 158, 60);
+				g.setFont(new Font("Courier", Font.BOLD, 18));
+				g.drawString("GO TO MARKET", 622, 85);
+			}
+			
 			for(String k : map.getGraph().keySet()) {
 				City c = map.getGraph().get(k);
 				if(locked.contains(c.getColor())) {
 					g.drawImage(new ImageIcon("cloud.png").getImage(), c.getMinX() - 10, c.getMinY(), 83, 50, null);
 				}
+			}
+			
+			for(int i = 0; i < 24; i++) {
+				g.setColor(new Color(180, 108, 2));
+				g.fillRect(50 + (i/3) * 24 + i*45, 940, 30, 30);
+				g.setColor(Color.DARK_GRAY);
+				g.fillRect(50 + (i/3) * 69 + i*30, 972, 28, 28);
+				g.setColor(Color.YELLOW);
+				g.fillRect(50 + (i/3) * 24 + i*45, 1002, 30, 30);
+			}
+			for(int i = 0; i < 8; i++) {
+				g.setColor(Color.RED);
+				g.fillRect(140 + i*159, 972, 28, 28);
 			}
 			
 			if(cityPopup != null) {
