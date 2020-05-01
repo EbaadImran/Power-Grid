@@ -78,6 +78,7 @@ public class GridGraphics extends JFrame {
 								if (e.getX() >= 604 && e.getY() >= 500 && e.getX() <= 704 && e.getY() <= 550) {
 									board.removeFromAuction(board.getPlayers()[board.getTurn()].getTurn());
 									panel.setAuctionPopup(0);
+									panel.setPlayer(board.getTurn());
 								}
 								int i = (e.getX() - 420) / 120;
 								if (i > -1 && i < 4 && e.getY() >= 360 && e.getY() <= 470
@@ -123,9 +124,11 @@ public class GridGraphics extends JFrame {
 								if (winner.availablePlant())
 									board.winAuction(winner.nextAvailablePlant());
 								else {
-									// MAKE DISCARD POWERPLANT
+									//TODO: MAKE DISCARD POWERPLANT
 									board.winAuction(0);
 								}
+								//TODO: CHECK IF ALL SKIPPED
+								//TODO: NO PASS ROUND 1
 								panel.setAuctionPopup(0);
 								panel.setAuctionCard(null);
 								panel.setPlayer(board.getTurn());
@@ -143,6 +146,7 @@ public class GridGraphics extends JFrame {
 							else if(e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
 								panel.setResourcePopup(false);
 								board.backTurn();
+								panel.setPlayer(board.getTurn());
 							}
 						}
 					}

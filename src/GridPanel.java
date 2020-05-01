@@ -239,6 +239,18 @@ public class GridPanel extends JPanel {
 			} else if (resourcePopup) {
 				g.drawImage(new ImageIcon("resourceMarket.png").getImage(), 408, 286, 493, 382, null);
 				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
+				g.setColor(colors.get("pri"));
+				g.setFont(new Font("Courier", Font.BOLD, 25));
+				g.drawString("x" + market.getAmount(0), 520, 380);
+				g.drawString("x" + market.getAmount(1), 750, 380);
+				g.drawString("x" + market.getAmount(2), 520, 532);
+				g.drawString("x" + market.getAmount(3), 750, 532);
+				g.drawImage(new ImageIcon("buy.png").getImage(), 520, 490, 40, 20, null);
+				g.drawImage(new ImageIcon("buy.png").getImage(), 750, 490, 40, 20, null);
+				g.drawImage(new ImageIcon("buy.png").getImage(), 520, 632, 40, 20, null);
+				g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
+				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
+				g.drawString(players[turn].getMoney() + " ELEKTROS", 572, 513);
 			}
 
 			for (int i = 0; i < 4; i++) {
