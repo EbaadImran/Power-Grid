@@ -54,9 +54,14 @@ public class Board {
 	public int getTurn() {
 		return turn;
 	}
-	public void nextTurn() {
+	public void frontTurn() {
 		turn = (turn + 1) % 4;
 		if(turn == 0)
+			nextPhase();
+	}
+	public void backTurn() {
+		turn = turn - 1 == -1 ? 3 : turn-1;
+		if(turn == 3)
 			nextPhase();
 	}
 	public int getPhase() {
@@ -94,6 +99,7 @@ public class Board {
 			}
 		if(auctionOrder.size() == 0) {
 			nextPhase();
+			turn = 3;
 		}
 		else {
 			for(int i = 0; i < 4; i++) {

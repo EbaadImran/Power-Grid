@@ -10,13 +10,19 @@ public class Player implements Comparable<Player> {
 	private HashMap<Resource, Integer> list = new HashMap<>();
 	private HashMap<Resource, Integer> Dlist = new HashMap<>();
 
-	// REDO ALL RESOURCE MANAGEMENT
-
 	public Player(int t) {
 		plants = new Card[3];
 		turn = t;
 		money = 50;
 		cities = new ArrayList<>();
+		list.put(Resource.COAL, 0);
+		list.put(Resource.OIL, 0);
+		list.put(Resource.GARBAGE, 0);
+		list.put(Resource.URANIUM, 0);
+		Dlist.put(Resource.COAL, 0);
+		Dlist.put(Resource.OIL, 0);
+		Dlist.put(Resource.GARBAGE, 0);
+		Dlist.put(Resource.URANIUM, 0);
 	}
 
 	public Card[] getPlants() {
@@ -74,6 +80,10 @@ public class Player implements Comparable<Player> {
 	public int getNumCities() {
 		return cities.size();
 	}
+	
+	public ArrayList<String> getCities() {
+		return cities;
+	}
 
 	public int biggestPlant() {
 		int big = Integer.MIN_VALUE;
@@ -123,7 +133,7 @@ public class Player implements Comparable<Player> {
 		Resource coal = Resource.COAL;
 		Resource oil = Resource.OIL;
 		for (int x = 0; x < plants.length; x++) {
-			if (plants[x].getRes() != Resource.DOUBLE) {
+			if (plants[x] != null && plants[x].getRes() != Resource.DOUBLE) {
 				list.put(plants[x].getRes(), plants[x].getStorage());// gets current storage of all plants(non hybrid)
 			}
 		}
