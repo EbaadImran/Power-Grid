@@ -116,6 +116,14 @@ public class GridPanel extends JPanel {
 				g2.drawRect(610, 50, 158, 60);
 				g.setFont(new Font("Courier", Font.BOLD, 18));
 				g.drawString("GO TO MARKET", 622, 85);
+			} else if (phase == 3) {
+				g.setColor(colors.get("sec"));
+				g.fillRect(610, 50, 155, 60);
+				g.setColor(colors.get("pri"));
+				g2.setStroke(new BasicStroke(7));
+				g2.drawRect(610, 50, 155, 60);
+				g.setFont(new Font("Courier", Font.BOLD, 18));
+				g.drawString("END BUILDING", 622, 85);
 			}
 
 			for (String k : map.getGraph().keySet()) {

@@ -180,6 +180,11 @@ public class GridGraphics extends JFrame {
 									break;
 								}
 							}
+							if(e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 765 && e.getY() <= 110) {
+								board.backTurn();
+								panel.setPlayer(board.getTurn());
+							}
+								
 						} else {
 							int dist = board.getGraph().shortestToPlayer(board.getPlayers()[board.getTurn()].getTurn(),
 									panel.getCityPopup().getName());
