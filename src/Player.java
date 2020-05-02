@@ -104,7 +104,6 @@ public class Player implements Comparable<Player> {
 			}
 		}
 		return false;
-
 	}
 
 	public boolean subtractRes(Card c)// incase it doesn't have enough fuel, it will throw a false;
