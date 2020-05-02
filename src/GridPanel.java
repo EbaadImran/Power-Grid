@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -241,14 +242,23 @@ public class GridPanel extends JPanel {
 				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
 				g.setColor(colors.get("pri"));
 				g.setFont(new Font("Courier", Font.BOLD, 25));
-				g.drawString("x" + market.getAmount(0), 520, 380);
-				g.drawString("x" + market.getAmount(1), 750, 380);
-				g.drawString("x" + market.getAmount(2), 520, 532);
-				g.drawString("x" + market.getAmount(3), 750, 532);
-				g.drawImage(new ImageIcon("buy.png").getImage(), 520, 490, 40, 20, null);
-				g.drawImage(new ImageIcon("buy.png").getImage(), 750, 490, 40, 20, null);
-				g.drawImage(new ImageIcon("buy.png").getImage(), 520, 632, 40, 20, null);
-				g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
+				String s0 = market.getPrice(0) == -1 ? "N/A" : "$" + market.getPrice(0);
+				g.drawString(s0, 520, 380);
+				String s1 = market.getPrice(1) == -1 ? "N/A" : "$" + market.getPrice(1);
+				g.drawString(s1, 750, 380);
+				String s2 = market.getPrice(2) == -1 ? "N/A" : "$" + market.getPrice(2);
+				g.drawString(s2, 520, 532);
+				String s3 = market.getPrice(3) == -1 ? "N/A" : "$" + market.getPrice(3);
+				g.drawString(s3, 750, 532);
+				int[] buyable = availableResource(players[turn]);
+				if (market.getPrice(0) != -1 && players[turn].getMoney() >= market.getPrice(0) && buyable[0] != -1)
+					g.drawImage(new ImageIcon("buy.png").getImage(), 520, 490, 40, 20, null);
+				if (market.getPrice(1) != -1 && players[turn].getMoney() >= market.getPrice(1) && buyable[1] != -1)
+					g.drawImage(new ImageIcon("buy.png").getImage(), 750, 490, 40, 20, null);
+				if (market.getPrice(2) != -1 && players[turn].getMoney() >= market.getPrice(2) && buyable[2] != -1)
+					g.drawImage(new ImageIcon("buy.png").getImage(), 520, 632, 40, 20, null);
+				if (market.getPrice(3) != -1 && players[turn].getMoney() >= market.getPrice(3) && buyable[3] != -1)
+					g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString(players[turn].getMoney() + " ELEKTROS", 572, 513);
 			}
@@ -273,10 +283,11 @@ public class GridPanel extends JPanel {
 			Player display = players[viewingPlayer];
 			for (int i = 0; i < 3; i++) {
 				Card c = display.getPlants()[i];
-				if (c != null) {
+				if (c != null)
 					g.drawImage(new ImageIcon("" + c.getNum() + ".png").getImage(), 1400 + i * 150, 765, 140, 140,
 							null);
-				}
+				else
+					g.drawImage(new ImageIcon("empty.png").getImage(), 1400 + i * 150, 765, 140, 140, null);
 			}
 
 			g.setColor(colors.get(Board.TURN_COLORS[display.getTurn()]));
@@ -295,6 +306,22 @@ public class GridPanel extends JPanel {
 						728);
 			}
 		}
+	}
+
+	public int[] availableResource(Player curr) {
+		int[] rtn = new int[4];
+		Arrays.fill(rtn, -1);
+		for (int i = 0; i < 3; i++) {
+			if (curr.getPlants()[i] != null && curr.canIBuy(curr.getPlants()[i])) {
+				if (curr.getPlants()[i].getRes() != Resource.DOUBLE)
+					rtn[Resource.resourceToNum(curr.getPlants()[i].getRes())] = i;
+				else {
+					rtn[Resource.resourceToNum(Resource.COAL)] = i;
+					rtn[Resource.resourceToNum(Resource.OIL)] = i;
+				}
+			}
+		}
+		return rtn;
 	}
 
 	public void setGamestate(ArrayList<Object> g) {

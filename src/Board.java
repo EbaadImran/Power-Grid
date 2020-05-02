@@ -51,6 +51,9 @@ public class Board {
 	public Graph getGraph() {
 		return map;
 	}
+	public Market getMarket() {
+		return market;
+	}
 	public int getTurn() {
 		return turn;
 	}

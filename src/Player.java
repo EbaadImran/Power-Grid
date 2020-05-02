@@ -7,7 +7,6 @@ public class Player implements Comparable<Player> {
 	private int turn;
 	private ArrayList<String> cities;
 
-	private HashMap<Resource, Integer> list = new HashMap<>();
 	private HashMap<Resource, Integer> Dlist = new HashMap<>();
 
 	public Player(int t) {
@@ -15,10 +14,6 @@ public class Player implements Comparable<Player> {
 		turn = t;
 		money = 50;
 		cities = new ArrayList<>();
-		list.put(Resource.COAL, 0);
-		list.put(Resource.OIL, 0);
-		list.put(Resource.GARBAGE, 0);
-		list.put(Resource.URANIUM, 0);
 		Dlist.put(Resource.COAL, 0);
 		Dlist.put(Resource.OIL, 0);
 		Dlist.put(Resource.GARBAGE, 0);
@@ -103,7 +98,7 @@ public class Player implements Comparable<Player> {
 			if (res == Resource.OIL || res == Resource.COAL) {
 				if (c.getStorage() < 2 * c.getCost()) {
 					c.addStorage();
-					Dlist.put(res, list.get(res) + 1);
+					Dlist.put(res, Dlist.get(res) + 1);
 					return true;
 				}
 			}
@@ -132,6 +127,11 @@ public class Player implements Comparable<Player> {
 	public HashMap<Resource, Integer> showRes() {
 		Resource coal = Resource.COAL;
 		Resource oil = Resource.OIL;
+		HashMap<Resource, Integer> list = new HashMap<>();
+		list.put(Resource.COAL, 0);
+		list.put(Resource.OIL, 0);
+		list.put(Resource.GARBAGE, 0);
+		list.put(Resource.URANIUM, 0);
 		for (int x = 0; x < plants.length; x++) {
 			if (plants[x] != null && plants[x].getRes() != Resource.DOUBLE) {
 				list.put(plants[x].getRes(), plants[x].getStorage());// gets current storage of all plants(non hybrid)

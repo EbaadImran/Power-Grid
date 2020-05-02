@@ -18,7 +18,19 @@ public class Market {
 	public void removeResource(int res, int amt) {
 		markets[res] -= amt;
 	}
-
+	
+	public int getPrice(int res) {
+		if(markets[res] == 0)
+			return -1;
+		if(res < 3) {
+			return 8 - (markets[res] - 1)/3;
+		}
+		else if(markets[res] < 5) {
+			return 10 + (4 - markets[res]) * 2;
+		}
+		return 13 - markets[res];
+	}
+	
 	public int getCapacity(int res) {
 		return CAP[res] - markets[res];
 	}
