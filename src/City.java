@@ -1,123 +1,124 @@
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class City 
+public class City
 {
-	private String name;
-	private String color;
-	private int index;
-	private int minX, minY, maxX, maxY;
-	private int[] occupants;
-	private HashSet<Integer> occupantsSet;
-	private ArrayList<Path> paths;
+    private String name;
+    private String color;
+    private int index;
+    private int minX, minY, maxX, maxY;
+    private int[] occupants;
+    private HashSet<Integer> occupantsSet;
+    private ArrayList<Path> paths;
 
-	public City(String c, String n, int i, int lx, int ly, int rx, int ry) {
-		setColor(c);
-		setName(n);
-		setIndex(i);
-		setMinX(lx);
-		setMinY(ly);
-		setMaxX(rx);
-		setMaxY(ry);
-		occupants = new int[3];
-		occupantsSet = new HashSet<>();
-		Arrays.fill(occupants, -1);
-		paths = new ArrayList<>();
-	}
-	public HashSet<Integer> occupantsSet() {
-		return occupantsSet;
-	}
-	public int[] occupants() {
-		return occupants;
-	}
-	
-	public void occupy(int t) {
-		for(int i = 0; i < 3; i++) {
-			if(occupants[i] == -1) {
-				occupants[i] = t;
-				occupantsSet.add(t);
-				break;
-			}
-		}
-	}
-	public int nextAvailableSpot() {
-		for(int i = 0; i < 3; i++)
-			if(occupants[i] == -1)
-				return i;
-		return 3;
-	}
-	public void addPath(Path path) {
-		paths.add(path);
-	}
+    public City(String c, String n, int i, int lx, int ly, int rx, int ry) {
+        setColor(c);
+        setName(n);
+        setIndex(i);
+        setMinX(lx);
+        setMinY(ly);
+        setMaxX(rx);
+        setMaxY(ry);
+        occupants = new int[3];
+        occupantsSet = new HashSet<>();
+        Arrays.fill(occupants, -1);
+        paths = new ArrayList<>();
+    }
+    public HashSet<Integer> occupantsSet() {
+        return occupantsSet;
+    }
+    public int[] occupants() {
+        return occupants;
+    }
 
-	public String getColor() {
-		return color;
-	}
+    public void occupy(int t) {
+        for(int i = 0; i < 3; i++) {
+            if(occupants[i] == -1) {
+                occupants[i] = t;
+                occupantsSet.add(t);
+                break;
+            }
+        }
+    }
+    public int nextAvailableSpot() {
+        for(int i = 0; i < 3; i++)
+            if(occupants[i] == -1)
+                return i;
+        return 3;
+    }
+    public void addPath(Path path) {
+        paths.add(path);
+    }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+    public String getColor() {
+        return color;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public ArrayList<Path> getEdges() {
-		return paths;
-	}
-	
-	public void clearEdges() {
-		paths = new ArrayList<>();
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public int getNumEdges() {
-		return paths.size();
-	}
+    public ArrayList<Path> getEdges() {
+        return paths;
+    }
 
-	public int getIndex() {
-		return index;
-	}
+    public void clearEdges() {
+        paths = new ArrayList<>();
+    }
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
+    public int getNumEdges() {
+        return paths.size();
+    }
 
-	public int getMinX() {
-		return minX;
-	}
+    public int getIndex() {
+        return index;
+    }
 
-	public void setMinX(int minX) {
-		this.minX = minX;
-	}
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
-	public int getMinY() {
-		return minY;
-	}
+    public int getMinX() {
+        return minX;
+    }
 
-	public void setMinY(int minY) {
-		this.minY = minY;
-	}
+    public void setMinX(int minX) {
+        this.minX = minX;
+    }
 
-	public int getMaxX() {
-		return maxX;
-	}
+    public int getMinY() {
+        return minY;
+    }
 
-	public void setMaxX(int maxX) {
-		this.maxX = maxX;
-	}
+    public void setMinY(int minY) {
+        this.minY = minY;
+    }
 
-	public int getMaxY() {
-		return maxY;
-	}
+    public int getMaxX() {
+        return maxX;
+    }
 
-	public void setMaxY(int maxY) {
-		this.maxY = maxY;
-	}
-	
-	
+    public void setMaxX(int maxX) {
+        this.maxX = maxX;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
+
+    public void setMaxY(int maxY) {
+        this.maxY = maxY;
+    }
+
+
 }
