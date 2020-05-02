@@ -50,23 +50,7 @@ public class GridGraphics extends JFrame {
 					}
 				} else if (panel.getScreen() == 2) { // main gui
 					System.out.println(e.getX() + " " + e.getY());
-					if (board.getPhase() == 3) {
-						if (panel.getCityPopup() == null) {
-							Graph map = board.getGraph();
-							for (String k : map.getGraph().keySet()) {
-								City test = map.getGraph().get(k);
-								if (e.getX() >= test.getMinX() && e.getX() <= test.getMaxX()
-										&& e.getY() >= test.getMinY() && e.getY() <= test.getMaxY()
-										&& !board.getLocked().contains(test.getColor())) {
-									panel.setCityPopup(test);
-									break;
-								}
-							}
-						} else {
-							if (e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
-								panel.setCityPopup(null);
-						}
-					} else if (board.getPhase() == 1) {
+					if (board.getPhase() == 1) {
 						if (panel.getAuctionPopup() == 0 && e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 768
 								&& e.getY() <= 110) {
 							if (board.getAuction().getHighestBid() > 0)
@@ -154,33 +138,63 @@ public class GridGraphics extends JFrame {
 									&& board.getPlayers()[board.getTurn()].getMoney() >= board.getMarket().getPrice(0)
 									&& buyable[0] != -1 && e.getX() >= 520 && e.getY() >= 490 && e.getX() <= 560
 									&& e.getY() <= 510) {
-								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(0), board.getPlayers()[board.getTurn()].getPlants()[buyable[0]]);
+								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(0),
+										board.getPlayers()[board.getTurn()].getPlants()[buyable[0]]);
 								board.getPlayers()[board.getTurn()].removeMoney(board.getMarket().getPrice(0));
 								board.getMarket().removeResource(0, 1);
-							}
-							else if (board.getMarket().getPrice(1) != -1
+							} else if (board.getMarket().getPrice(1) != -1
 									&& board.getPlayers()[board.getTurn()].getMoney() >= board.getMarket().getPrice(1)
 									&& buyable[1] != -1 && e.getX() >= 750 && e.getY() >= 490 && e.getX() <= 790
 									&& e.getY() <= 510) {
-								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(1), board.getPlayers()[board.getTurn()].getPlants()[buyable[1]]);
+								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(1),
+										board.getPlayers()[board.getTurn()].getPlants()[buyable[1]]);
 								board.getPlayers()[board.getTurn()].removeMoney(board.getMarket().getPrice(1));
 								board.getMarket().removeResource(1, 1);
-							}
-							else if (board.getMarket().getPrice(2) != -1
+							} else if (board.getMarket().getPrice(2) != -1
 									&& board.getPlayers()[board.getTurn()].getMoney() >= board.getMarket().getPrice(2)
 									&& buyable[2] != -1 && e.getX() >= 520 && e.getY() >= 632 && e.getX() <= 560
 									&& e.getY() <= 652) {
-								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(2), board.getPlayers()[board.getTurn()].getPlants()[buyable[2]]);
+								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(2),
+										board.getPlayers()[board.getTurn()].getPlants()[buyable[2]]);
 								board.getPlayers()[board.getTurn()].removeMoney(board.getMarket().getPrice(2));
 								board.getMarket().removeResource(2, 1);
-							}
-							else if (board.getMarket().getPrice(3) != -1
+							} else if (board.getMarket().getPrice(3) != -1
 									&& board.getPlayers()[board.getTurn()].getMoney() >= board.getMarket().getPrice(3)
 									&& buyable[3] != -1 && e.getX() >= 750 && e.getY() >= 632 && e.getX() <= 790
 									&& e.getY() <= 652) {
-								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(3), board.getPlayers()[board.getTurn()].getPlants()[buyable[3]]);
+								board.getPlayers()[board.getTurn()].addRes(Resource.numToResource(3),
+										board.getPlayers()[board.getTurn()].getPlants()[buyable[3]]);
 								board.getPlayers()[board.getTurn()].removeMoney(board.getMarket().getPrice(3));
 								board.getMarket().removeResource(3, 1);
+							}
+						}
+					} else if (board.getPhase() == 3) {
+						if (panel.getCityPopup() == null) {
+							Graph map = board.getGraph();
+							for (String k : map.getGraph().keySet()) {
+								City test = map.getGraph().get(k);
+								if (e.getX() >= test.getMinX() && e.getX() <= test.getMaxX()
+										&& e.getY() >= test.getMinY() && e.getY() <= test.getMaxY()
+										&& !board.getLocked().contains(test.getColor())) {
+									panel.setCityPopup(test);
+									break;
+								}
+							}
+						} else {
+							int dist = board.getGraph().shortestToPlayer(board.getPlayers()[board.getTurn()].getTurn(),
+									panel.getCityPopup().getName());
+							int price = dist + (panel.getCityPopup().nextAvailableSpot() + 2) * 5;
+							if (e.getX() >= 790 && e.getX() <= 805 && e.getY() >= 360 && e.getY() <= 375)
+								panel.setCityPopup(null);
+							else if (panel.getCityPopup().nextAvailableSpot() <= board.getStep()
+									&& !panel.getCityPopup().occupantsSet()
+											.contains(board.getPlayers()[board.getTurn()].getTurn())
+									&& board.getPlayers()[board.getTurn()].getMoney() >= price && e.getX() >= 600
+									&& e.getY() >= 540 && e.getX() <= 700 && e.getY() <= 590) {
+								board.getPlayers()[board.getTurn()].addCity(panel.getCityPopup().getName());
+								board.getPlayers()[board.getTurn()].removeMoney(price);
+								panel.getCityPopup().occupy(board.getPlayers()[board.getTurn()].getTurn());
+								panel.setCityPopup(null);
 							}
 						}
 					}
@@ -206,7 +220,7 @@ public class GridGraphics extends JFrame {
 		Arrays.fill(rtn, -1);
 		for (int i = 0; i < 3; i++) {
 			if (curr.getPlants()[i] != null && curr.canIBuy(curr.getPlants()[i])) {
-				if(curr.getPlants()[i].getRes() != Resource.DOUBLE)
+				if (curr.getPlants()[i].getRes() != Resource.DOUBLE)
 					rtn[Resource.resourceToNum(curr.getPlants()[i].getRes())] = i;
 				else {
 					rtn[Resource.resourceToNum(Resource.COAL)] = i;

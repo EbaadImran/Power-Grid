@@ -189,6 +189,8 @@ public class GridPanel extends JPanel {
 				if (displayOcc.equals(""))
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
+				if(cityPopup.nextAvailableSpot() <= step && !occ.contains(players[turn].getTurn()) && players[turn].getMoney() >= price)
+					g.drawImage(new ImageIcon("buy.png").getImage(), 600, 540, 100, 50, null);
 			} else if (auctionPopup >= 1) {
 				g.drawImage(new ImageIcon("auction.png").getImage(), 408, 286, 493, 382, null);
 				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
