@@ -283,7 +283,7 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString(players[turn].getMoney() + " ELEKTROS", 572, 513);
-			} else if(moneyPopup) {
+			} else if(moneyPopup) { //finish later
 				g.drawImage(new ImageIcon("bureaucracy.png").getImage(), 408, 286, 493, 382, null);
 				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
 				for(int i = 0; i < 3; i++) {
@@ -296,7 +296,7 @@ public class GridPanel extends JPanel {
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString("" + (players[turn].getNumCities() - citiesPowered), 695, 500);
 				g.drawString("" + citiesPowered, 692, 522);
-				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575); 
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 602, 575);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 717, 575);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 825, 575);
