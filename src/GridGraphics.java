@@ -202,6 +202,21 @@ public class GridGraphics extends JFrame {
 								panel.setCityPopup(null);
 							}
 						}
+					} else if(board.getPhase() == 4) {
+						if(!panel.getMoneyPopup() && e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 765 && e.getY() <= 110) {
+							panel.setCitiesPowered(0);
+							panel.setMoneyPopup(true);
+						}
+						else if(panel.getMoneyPopup()) {
+							if(e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325) {
+								panel.setMoneyPopup(false);
+							} else if(e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
+								panel.setMoneyPopup(false);
+								panel.setCitiesPowered(-1);
+								board.frontTurn();
+								panel.setPlayer(board.getTurn());
+							}
+						}
 					}
 
 					if (panel.getCityPopup() == null && panel.getAuctionPopup() == 0) { // NO POPUPS

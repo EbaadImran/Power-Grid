@@ -21,6 +21,8 @@ public class GridPanel extends JPanel {
 	private int auctionPrice;
 	private int viewingPlayer;
 	private boolean resourcePopup;
+	private boolean moneyPopup;
+	private int citiesPowered;
 
 	public GridPanel() {
 		gs = new ArrayList<Object>();
@@ -29,6 +31,8 @@ public class GridPanel extends JPanel {
 		cityPopup = null;
 		auctionPopup = 0;
 		resourcePopup = false;
+		moneyPopup = false;
+		citiesPowered = -1;
 		colors = new HashMap<>();
 		colors.put("PURPLE", new Color(148, 105, 125));
 		colors.put("BLUE", new Color(93, 145, 144));
@@ -124,6 +128,14 @@ public class GridPanel extends JPanel {
 				g2.drawRect(610, 50, 155, 60);
 				g.setFont(new Font("Courier", Font.BOLD, 18));
 				g.drawString("END BUILDING", 622, 85);
+			} else if(phase == 4) {
+				g.setColor(colors.get("sec"));
+				g.fillRect(610, 50, 155, 60);
+				g.setColor(colors.get("pri"));
+				g2.setStroke(new BasicStroke(7));
+				g2.drawRect(610, 50, 155, 60);
+				g.setFont(new Font("Courier", Font.BOLD, 18));
+				g.drawString("POWER CITIES", 622, 85);
 			}
 
 			for (String k : map.getGraph().keySet()) {
@@ -271,6 +283,23 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString(players[turn].getMoney() + " ELEKTROS", 572, 513);
+			} else if(moneyPopup) {
+				g.drawImage(new ImageIcon("bureaucracy.png").getImage(), 408, 286, 493, 382, null);
+				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
+				for(int i = 0; i < 3; i++) {
+					if(players[turn].getPlants()[i] != null) {
+						g.drawImage(new ImageIcon("" + players[turn].getPlants()[i].getNum() + ".png").getImage(), 500 + i*110, 400, 75, 75, null);
+					} else {
+						g.drawImage(new ImageIcon("empty.png").getImage(), 500 + i*110, 400, 75, 75, null);
+					}
+				}
+				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
+				g.drawString("" + (players[turn].getNumCities() - citiesPowered), 695, 500);
+				g.drawString("" + citiesPowered, 692, 522);
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 602, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 717, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 825, 575);
 			}
 
 			for (int i = 0; i < 4; i++) {
@@ -392,6 +421,26 @@ public class GridPanel extends JPanel {
 
 	public boolean getResourcePopup() {
 		return resourcePopup;
+	}
+
+	public void setMoneyPopup(boolean b) {
+		moneyPopup = b;
+	}
+	
+	public boolean getMoneyPopup() {
+		return moneyPopup;
+	}
+	
+	public void addCitiesPowered(int a) {
+		citiesPowered += a;
+	}
+	
+	public void setCitiesPowered(int a) {
+		citiesPowered = a;
+	}
+	
+	public int getCitiesPowered() {
+		return citiesPowered;
 	}
 
 	public String center(String col) {

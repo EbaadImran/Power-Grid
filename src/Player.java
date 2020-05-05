@@ -82,8 +82,11 @@ public class Player implements Comparable<Player> {
 
 	public int biggestPlant() {
 		int big = Integer.MIN_VALUE;
-		for (Card k : plants)
+		for (Card k : plants) {
+			if(k == null)
+				return -1;
 			big = Math.max(big, k.getNum());
+		}
 		return big;
 	}
 

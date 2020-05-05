@@ -81,6 +81,9 @@ public class Board {
 		else if(phase == 2) {
 			auction.endPhase();
 		}
+		else if(phase == 4) {
+			turn = 0;
+		}
 	}
 	public Player[] getPlayers() {
 		return players;
