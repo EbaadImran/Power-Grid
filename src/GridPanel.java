@@ -309,9 +309,9 @@ public class GridPanel extends JPanel {
 				g.drawString("" + (players[turn].getNumCities() - citiesPowered), 695, 500);
 				g.drawString("" + citiesPowered, 692, 522);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575);
-				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 602, 575);
-				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 717, 575);
-				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 825, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.OIL), 602, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.GARBAGE), 717, 575);
+				g.drawString("x" + players[turn].showRes().get(Resource.URANIUM), 825, 575);
 			}
 
 			for (int i = 0; i < 4; i++) {
