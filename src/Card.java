@@ -51,7 +51,7 @@ public class Card implements Comparable<Card>{
         storage += 1;
     }
     public void subtractStorage() {
-        storage -= getCost();
+        storage -= 1;
     }
 
     public int compareTo(Card oth) {

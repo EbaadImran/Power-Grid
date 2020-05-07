@@ -128,7 +128,7 @@ public class GridPanel extends JPanel {
 				g2.drawRect(610, 50, 155, 60);
 				g.setFont(new Font("Courier", Font.BOLD, 18));
 				g.drawString("END BUILDING", 622, 85);
-			} else if(phase == 4) {
+			} else if (phase == 4) {
 				g.setColor(colors.get("sec"));
 				g.fillRect(610, 50, 155, 60);
 				g.setColor(colors.get("pri"));
@@ -209,7 +209,8 @@ public class GridPanel extends JPanel {
 				if (displayOcc.equals(""))
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
-				if(cityPopup.nextAvailableSpot() <= step && !occ.contains(players[turn].getTurn()) && players[turn].getMoney() >= price)
+				if (cityPopup.nextAvailableSpot() <= step && !occ.contains(players[turn].getTurn())
+						&& players[turn].getMoney() >= price)
 					g.drawImage(new ImageIcon("buy.png").getImage(), 600, 540, 100, 50, null);
 			} else if (auctionPopup >= 1) {
 				g.drawImage(new ImageIcon("auction.png").getImage(), 408, 286, 493, 382, null);
@@ -283,20 +284,31 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon("buy.png").getImage(), 750, 632, 40, 20, null);
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString(players[turn].getMoney() + " ELEKTROS", 572, 513);
-			} else if(moneyPopup) { //finish later
+			} else if (moneyPopup) { // finish later
 				g.drawImage(new ImageIcon("bureaucracy.png").getImage(), 408, 286, 493, 382, null);
 				g.drawImage(new ImageIcon("x.png").getImage(), 860, 310, 15, 15, null);
-				for(int i = 0; i < 3; i++) {
-					if(players[turn].getPlants()[i] != null) {
-						g.drawImage(new ImageIcon("" + players[turn].getPlants()[i].getNum() + ".png").getImage(), 500 + i*110, 400, 75, 75, null);
+				for (int i = 0; i < 3; i++) {
+					Card currCard = players[turn].getPlants()[i];
+					if (currCard != null) {
+						g.drawImage(new ImageIcon("" + currCard.getNum() + ".png").getImage(), 500 + i * 110, 400, 75,
+								75, null);
+						if (currCard.getRes() != Resource.DOUBLE
+								&& players[turn].showRes().get(currCard.getRes()) < currCard.getCost()
+								|| players[turn].getNumCities() - citiesPowered == 0) {
+							g.drawImage(new ImageIcon("x.png").getImage(), 500 + i * 110, 400, 75, 75, null);
+						} else if (currCard.getRes() == Resource.DOUBLE && players[turn].showRes().get(Resource.COAL)
+								+ players[turn].showRes().get(Resource.OIL) < currCard.getCost()
+								|| players[turn].getNumCities() - citiesPowered == 0) {
+							g.drawImage(new ImageIcon("x.png").getImage(), 500 + i * 110, 400, 75, 75, null);
+						}
 					} else {
-						g.drawImage(new ImageIcon("empty.png").getImage(), 500 + i*110, 400, 75, 75, null);
+						g.drawImage(new ImageIcon("empty.png").getImage(), 500 + i * 110, 400, 75, 75, null);
 					}
 				}
 				g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));
 				g.drawString("" + (players[turn].getNumCities() - citiesPowered), 695, 500);
 				g.drawString("" + citiesPowered, 692, 522);
-				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575); 
+				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 508, 575);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 602, 575);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 717, 575);
 				g.drawString("x" + players[turn].showRes().get(Resource.COAL), 825, 575);
@@ -426,19 +438,19 @@ public class GridPanel extends JPanel {
 	public void setMoneyPopup(boolean b) {
 		moneyPopup = b;
 	}
-	
+
 	public boolean getMoneyPopup() {
 		return moneyPopup;
 	}
-	
+
 	public void addCitiesPowered(int a) {
 		citiesPowered += a;
 	}
-	
+
 	public void setCitiesPowered(int a) {
 		citiesPowered = a;
 	}
-	
+
 	public int getCitiesPowered() {
 		return citiesPowered;
 	}
