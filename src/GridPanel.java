@@ -100,6 +100,7 @@ public class GridPanel extends JPanel {
 			int step = (int) gs.get(8);
 			int phase = (int) gs.get(7);
 			int turn = (int) gs.get(6);
+			int round = (int) gs.get(11);
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
 
@@ -219,7 +220,7 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i * 120 + 420, 360, 110,
 							110, null);
 				}
-				if (auctionPopup == 1) {
+				if (auctionPopup == 1 && round > 0) {
 					g.setColor(colors.get("pri"));
 					g.fillOval(604, 500, 100, 50);
 					g.setColor(colors.get("sec"));

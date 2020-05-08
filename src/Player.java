@@ -114,8 +114,13 @@ public class Player implements Comparable<Player> {
 	{
 		if(res != Resource.DOUBLE) {
 			for(int i = 0; i < 3; i++) {
-				if(plants[i] != null && plants[i].getRes() == res && plants[i].getStorage() > 1) {
+				if(plants[i] != null && (plants[i].getRes() == res || (plants[i].getRes() == Resource.DOUBLE && (res == Resource.COAL || res == Resource.OIL))) && plants[i].getStorage() > 1) {
 					plants[i].subtractStorage();
+					if(plants[i].getRes() == Resource.DOUBLE)
+						if(Dlist.get(Resource.COAL) > 0)
+							Dlist.put(Resource.COAL, Dlist.get(Resource.COAL) - 1);
+						else if(Dlist.get(Resource.OIL) > 0)
+							Dlist.put(Resource.OIL, Dlist.get(Resource.OIL) - 1);
 					return true;
 				}
 			}

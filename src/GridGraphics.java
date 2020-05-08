@@ -74,8 +74,9 @@ public class GridGraphics extends JFrame {
 							if (e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325)
 								panel.setAuctionPopup(0);
 							if (panel.getAuctionPopup() == 1) {
-								if (e.getX() >= 604 && e.getY() >= 500 && e.getX() <= 704 && e.getY() <= 550) {
+								if (e.getX() >= 604 && e.getY() >= 500 && e.getX() <= 704 && e.getY() <= 550 && board.getRound() > 0) {
 									board.removeFromAuction(board.getPlayers()[board.getTurn()].getTurn());
+									board.getAuction().increasePass();
 									panel.setAuctionPopup(0);
 									panel.setPlayer(board.getTurn());
 								}
@@ -213,6 +214,8 @@ public class GridGraphics extends JFrame {
 								board.getPlayers()[board.getTurn()].removeMoney(price);
 								panel.getCityPopup().occupy(board.getPlayers()[board.getTurn()].getTurn());
 								panel.setCityPopup(null);
+								if(board.getStep() == 0 && board.getPlayers()[board.getTurn()].getNumCities() == 7)
+									board.setStep(1);
 							}
 						}
 					} else if (board.getPhase() == 4) {
