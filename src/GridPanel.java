@@ -104,7 +104,7 @@ public class GridPanel extends JPanel {
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
 			
-			//Amount of Cities Bottom
+			//lol
 			for(int i = 0; i < 4; i++)
 			{
 				g.setColor(colors.get(Board.TURN_COLORS[players[i].getTurn()]));
