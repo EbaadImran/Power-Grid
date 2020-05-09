@@ -18,6 +18,7 @@ public class Board {
 	private int turn;
 	private int phase;
 	private int step;
+	private int round;
 	public static final String[] TURN_COLORS = {"RED", "BLUE", "GREEN", "PURPLE"};
 	public static final String[] PHASES = {"ORDER", "AUCTION", "BUYING", "BUILDING", "BUREAUCRACY"};
 	public static final int[] PAYOUT = {10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134, 138, 142, 145, 148, 150};
@@ -45,6 +46,7 @@ public class Board {
 		market = new Market();
 		turn = 0;
 		phase = 0;
+		round = 0;
 		nextPhase();
 		step = 0;
 	}
@@ -72,14 +74,19 @@ public class Board {
 	}
 	public void nextPhase() {
 		phase = (phase + 1) % 5;
-		if(phase == 0)
+		if(phase == 0) {
+			round++;
 			turnOrder();
+		}
 		else if(phase == 1) {
 			for(int i = 0; i < 4; i++)
 				auctionOrder.add(players[i].getTurn());
 		}
 		else if(phase == 2) {
 			auction.endPhase();
+		}
+		else if(phase == 4) {
+			turn = 0;
 		}
 	}
 	public Player[] getPlayers() {
@@ -101,6 +108,10 @@ public class Board {
 				break;
 			}
 		if(auctionOrder.size() == 0) {
+			if(auction.getPass() == 4) {
+				deck.buyCard(deck.getMarket()[0]);
+				deck.draw();
+			}
 			nextPhase();
 			turn = 3;
 		}
@@ -118,6 +129,9 @@ public class Board {
 	}
 	public void setStep(int step) {
 		this.step = step;
+	}
+	public int getRound() {
+		return round;
 	}
 	public void turnOrder() {
 		Arrays.sort(players);
@@ -190,6 +204,7 @@ public class Board {
 		gs.add(step); //8
 		gs.add(deck); //9
 		gs.add(auction); //10
+		gs.add(round); //11
 		return gs;
 	}
 }

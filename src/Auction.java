@@ -8,11 +8,13 @@ public class Auction {
     private int turn;
     private HashSet<Integer> participants;
     private ArrayList<Integer> order;
+    private int passAmt;
     private Player[] players;
 
     public Auction(Player[] p) {
         auctionCard = null;
         highestBid = 0;
+        passAmt = 0;
         highestBidIndex = -1;
         turn = -1;
         participants = new HashSet<>();
@@ -91,6 +93,14 @@ public class Auction {
         order.remove(t);
         turn %= order.size();
     }
+    
+    public void increasePass() {
+    	passAmt++;
+    }
+    
+    public int getPass() {
+    	return passAmt;
+    }
 
     public boolean checkEnd() {
         return order.size() == 1;
@@ -103,6 +113,7 @@ public class Auction {
     public void endPhase() {
         auctionCard = null;
         highestBid = 0;
+        passAmt = 0;
         highestBidIndex = -1;
         turn = -1;
         participants = new HashSet<>();

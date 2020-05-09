@@ -82,8 +82,11 @@ public class Player implements Comparable<Player> {
 
 	public int biggestPlant() {
 		int big = Integer.MIN_VALUE;
-		for (Card k : plants)
+		for (Card k : plants) {
+			if(k == null)
+				return -1;
 			big = Math.max(big, k.getNum());
+		}
 		return big;
 	}
 
@@ -107,18 +110,31 @@ public class Player implements Comparable<Player> {
 
 	}
 
-	public boolean subtractRes(Card c)// incase it doesn't have enough fuel, it will throw a false;
+	public boolean subtractRes(Resource res)
 	{
-		if (c.getStorage() - c.getCost() >= 0) {
-			c.subtractStorage();// all plants get their storage subtracted
-			return true;
-		} else if (c.getRes() == Resource.DOUBLE) {
-			if (Dlist.get(Resource.OIL) >= c.getCost()) {
-				Dlist.put(Resource.OIL, Dlist.get(Resource.OIL) - c.getCost());
-				return true;
-			} else if (Dlist.get(Resource.COAL) >= c.getCost()) {
-				Dlist.put(Resource.COAL, Dlist.get(Resource.COAL) - c.getCost());
-				return true;
+		if(res != Resource.DOUBLE) {
+			for(int i = 0; i < 3; i++) {
+				if(plants[i] != null && (plants[i].getRes() == res || (plants[i].getRes() == Resource.DOUBLE && (res == Resource.COAL || res == Resource.OIL))) && plants[i].getStorage() >= 1) {
+					plants[i].subtractStorage();
+					if(plants[i].getRes() == Resource.DOUBLE)
+						if(Dlist.get(Resource.COAL) > 0)
+							Dlist.put(Resource.COAL, Dlist.get(Resource.COAL) - 1);
+						else if(Dlist.get(Resource.OIL) > 0)
+							Dlist.put(Resource.OIL, Dlist.get(Resource.OIL) - 1);
+					return true;
+				}
+			}
+		} else {
+			for(int i = 0; i < 3; i++) {
+				if(plants[i] != null && (plants[i].getRes() == Resource.COAL || plants[i].getRes() == Resource.OIL || plants[i].getRes() == Resource.DOUBLE) && plants[i].getStorage() >= 1) {
+					plants[i].subtractStorage();
+					if(plants[i].getRes() == Resource.DOUBLE)
+						if(Dlist.get(Resource.COAL) > 0)
+							Dlist.put(Resource.COAL, Dlist.get(Resource.COAL) - 1);
+						else if(Dlist.get(Resource.OIL) > 0)
+							Dlist.put(Resource.OIL, Dlist.get(Resource.OIL) - 1);
+					return true;
+				}
 			}
 		}
 		return false;
