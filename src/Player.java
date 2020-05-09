@@ -114,7 +114,7 @@ public class Player implements Comparable<Player> {
 	{
 		if(res != Resource.DOUBLE) {
 			for(int i = 0; i < 3; i++) {
-				if(plants[i] != null && (plants[i].getRes() == res || (plants[i].getRes() == Resource.DOUBLE && (res == Resource.COAL || res == Resource.OIL))) && plants[i].getStorage() > 1) {
+				if(plants[i] != null && (plants[i].getRes() == res || (plants[i].getRes() == Resource.DOUBLE && (res == Resource.COAL || res == Resource.OIL))) && plants[i].getStorage() >= 1) {
 					plants[i].subtractStorage();
 					if(plants[i].getRes() == Resource.DOUBLE)
 						if(Dlist.get(Resource.COAL) > 0)
@@ -126,7 +126,7 @@ public class Player implements Comparable<Player> {
 			}
 		} else {
 			for(int i = 0; i < 3; i++) {
-				if(plants[i] != null && (plants[i].getRes() == Resource.COAL || plants[i].getRes() == Resource.OIL || plants[i].getRes() == Resource.DOUBLE) && plants[i].getStorage() > 1) {
+				if(plants[i] != null && (plants[i].getRes() == Resource.COAL || plants[i].getRes() == Resource.OIL || plants[i].getRes() == Resource.DOUBLE) && plants[i].getStorage() >= 1) {
 					plants[i].subtractStorage();
 					if(plants[i].getRes() == Resource.DOUBLE)
 						if(Dlist.get(Resource.COAL) > 0)

@@ -62,7 +62,6 @@ public class GridGraphics extends JFrame {
 						board.lock();
 					}
 				} else if (panel.getScreen() == 2) { // main gui
-					System.out.println(e.getX() + " " + e.getY());
 					if (board.getPhase() == 1) {
 						if (panel.getAuctionPopup() == 0 && e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 768
 								&& e.getY() <= 110) {
@@ -115,7 +114,6 @@ public class GridGraphics extends JFrame {
 									panel.setPrice(panel.getPrice() + 1);
 								} else if (e.getX() >= 770 && e.getY() >= 525 && e.getX() <= 820 && e.getY() <= 575) {
 									board.getAuction().bid(panel.getPrice(), board.getAuction().getTurn());
-									System.out.println(board.getAuction().getOrder());
 									panel.setPrice(panel.getPrice() + 1);
 								}
 							}
@@ -246,8 +244,11 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
-									for(int k = 0; k < price; k++)
-										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+									System.out.println(price);
+									for(int k = 0; k < price; k++) {
+										boolean check = board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+										System.out.println(check);
+									}
 								} else if (c.getRes() == Resource.DOUBLE
 										&& board.getPlayers()[board.getTurn()].showRes().get(Resource.COAL)
 												+ board.getPlayers()[board.getTurn()].showRes().get(Resource.OIL) >= c
@@ -258,8 +259,11 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
-									for(int k = 0; k < price; k++)
-										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+									System.out.println(price);
+									for(int k = 0; k < price; k++) {
+										boolean check = board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+										System.out.println(check);
+									}
 								}
 							}
 						}
