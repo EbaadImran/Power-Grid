@@ -144,6 +144,15 @@ public class GridPanel extends JPanel {
 				if (locked.contains(c.getColor())) {
 					g.drawImage(new ImageIcon("cloud.png").getImage(), c.getMinX() - 10, c.getMinY(), 83, 50, null);
 				}
+				else {
+					int[] occ = c.occupants();
+					for(int i = 0; i < 3; i++) {
+						if(occ[i] != -1) {
+							g.setColor(colors.get(Board.TURN_COLORS[occ[i]]));
+							g.fillOval(c.getMinX() + 10 + i*16, c.getMinY() + 35, 10, 10);
+						}
+					}
+				}
 			}
 
 			for (int i = 0; i < 24; i++) {
