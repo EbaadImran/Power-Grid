@@ -103,18 +103,17 @@ public class GridPanel extends JPanel {
 			int round = (int) gs.get(11);
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
-			
-			//Displaying City Numbers
+
+			// Displaying City Numbers
 			g.setColor(colors.get(Board.TURN_COLORS[players[0].getTurn()]));
-			g.fillOval(48 + (int)Math.floor((73.3 * players[0].getNumCities())), 889, 10, 10);
+			g.fillOval(48 + (int) Math.floor((73.3 * players[0].getNumCities())), 889, 10, 10);
 			g.setColor(colors.get(Board.TURN_COLORS[players[1].getTurn()]));
-			g.fillOval(48 + (int)Math.floor((73.3 * players[1].getNumCities())), 911, 10, 10);			//Best line of code in this entire project
+			g.fillOval(48 + (int) Math.floor((73.3 * players[1].getNumCities())), 911, 10, 10); // Best line of code in
+																								// this entire project
 			g.setColor(colors.get(Board.TURN_COLORS[players[2].getTurn()]));
-			g.fillOval(85 + (int)Math.floor((73.3 * players[2].getNumCities())), 889, 10, 10);
+			g.fillOval(85 + (int) Math.floor((73.3 * players[2].getNumCities())), 889, 10, 10);
 			g.setColor(colors.get(Board.TURN_COLORS[players[3].getTurn()]));
-			g.fillOval(85 + (int)Math.floor((73.3 * players[3].getNumCities())), 911, 10, 10);
-			
-			
+			g.fillOval(85 + (int) Math.floor((73.3 * players[3].getNumCities())), 911, 10, 10);
 
 			if (phase == 1) {
 				g.setColor(colors.get("sec"));
@@ -155,13 +154,12 @@ public class GridPanel extends JPanel {
 				City c = map.getGraph().get(k);
 				if (locked.contains(c.getColor())) {
 					g.drawImage(new ImageIcon("cloud.png").getImage(), c.getMinX() - 10, c.getMinY(), 83, 50, null);
-				}
-				else {
+				} else {
 					int[] occ = c.occupants();
-					for(int i = 0; i < 3; i++) {
-						if(occ[i] != -1) {
+					for (int i = 0; i < 3; i++) {
+						if (occ[i] != -1) {
 							g.setColor(colors.get(Board.TURN_COLORS[occ[i]]));
-							g.fillOval(c.getMinX() + 10 + i*16, c.getMinY() + 35, 10, 10);
+							g.fillOval(c.getMinX() + 10 + i * 16, c.getMinY() + 35, 10, 10);
 						}
 					}
 				}
@@ -281,6 +279,16 @@ public class GridPanel extends JPanel {
 					g.drawString("" + highestBid, 760, 600);
 					g.setColor(colors.get(auctionColor));
 					g.drawString(auctionColor, 775, 640);
+				} else if (auctionPopup == 4) {
+					int highestBidIndex = auction.getHighestBidIndex();
+					g.setFont(new Font("Courier", Font.BOLD, 25));
+					g.setColor(colors.get("pri"));
+					g.drawString("CHOOSE PLANT TO REPLACE", 490, 632);
+					g.drawImage(new ImageIcon("" + auctionCard.getNum() + ".png").getImage(), 450, 500, 100, 100, null);
+					for(int i = 0; i < 3; i++) {
+						Card c = players[highestBidIndex].getPlants()[i];
+						g.drawImage(new ImageIcon("" + c.getNum() + ".png").getImage(), 580 + i*105, 500, 100, 100, null);
+					}
 				}
 			} else if (resourcePopup) {
 				g.drawImage(new ImageIcon("resourceMarket.png").getImage(), 408, 286, 493, 382, null);
@@ -318,8 +326,9 @@ public class GridPanel extends JPanel {
 								&& players[turn].showRes().get(currCard.getRes()) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
 							g.drawImage(new ImageIcon("x.png").getImage(), 500 + i * 110, 400, 75, 75, null);
-						} else if (currCard.getRes() == Resource.DOUBLE && players[turn].showRes().get(Resource.COAL)
-								+ players[turn].showRes().get(Resource.OIL) < currCard.getCost()
+						} else if (currCard.getRes() == Resource.DOUBLE
+								&& players[turn].showRes().get(Resource.COAL)
+										+ players[turn].showRes().get(Resource.OIL) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
 							g.drawImage(new ImageIcon("x.png").getImage(), 500 + i * 110, 400, 75, 75, null);
 						}

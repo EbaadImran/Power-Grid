@@ -120,17 +120,23 @@ public class GridGraphics extends JFrame {
 							}
 							if (panel.getAuctionPopup() == 3 && board.getAuction().checkEnd()) {
 								Player winner = board.getPlayers()[board.getAuction().getHighestBidIndex()];
-								if (winner.availablePlant())
+								if (winner.availablePlant()) {
 									board.winAuction(winner.nextAvailablePlant());
-								else {
-									// TODO: MAKE DISCARD POWERPLANT
-									board.winAuction(0);
+									panel.setAuctionPopup(0);
+									panel.setAuctionCard(null);
+									panel.setPlayer(board.getTurn());
 								}
-								// TODO: CHECK IF ALL SKIPPED
-								// TODO: NO PASS ROUND 1
-								panel.setAuctionPopup(0);
-								panel.setAuctionCard(null);
-								panel.setPlayer(board.getTurn());
+								else {
+									panel.setAuctionPopup(4);
+								}
+							} else if(panel.getAuctionPopup() == 4) {
+								int i = (e.getX() - 580) / 105;
+								if(i >= 0 && i <= 2 && e.getY() >= 500 && e.getY() <= 600) {
+									board.winAuction(i);
+									panel.setAuctionPopup(0);
+									panel.setAuctionCard(null);
+									panel.setPlayer(board.getTurn());
+								}
 							}
 						}
 					} else if (board.getPhase() == 2) {

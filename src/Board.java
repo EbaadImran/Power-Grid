@@ -109,8 +109,11 @@ public class Board {
 			}
 		if(auctionOrder.size() == 0) {
 			if(auction.getPass() == 4) {
+				Card c = deck.getMarket()[0];
 				deck.buyCard(deck.getMarket()[0]);
+				deck.discard(c);
 				deck.draw();
+				//TODO: Check stage 3
 			}
 			nextPhase();
 			turn = 3;
@@ -178,11 +181,12 @@ public class Board {
 		int player = auction.getHighestBidIndex();
 		int price = auction.getHighestBid();
 		deck.buyCard(auction.getCard());
+		deck.discard(auction.getCard());
 		deck.draw();
+		//TODO: Check stage 3
 		players[player].addPlant(auction.getCard(), slot);
 		removeFromAuction(players[player].getTurn());
 		players[player].removeMoney(price);
-		auction.setHighestBid(0);
 		auction.setHighestBid(0);
 	}
 	public boolean checkWin() {

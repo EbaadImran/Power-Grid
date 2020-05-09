@@ -45,6 +45,10 @@ public class Deck {
         Arrays.sort(market);
         return false;
     }
+    
+    public void discard(Card c) {
+    	deck.add(c);
+    }
 
     public void buyCard(Card c) {
         for (int i = 0; i < market.length; i++) {

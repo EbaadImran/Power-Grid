@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Player implements Comparable<Player> {
@@ -11,6 +12,11 @@ public class Player implements Comparable<Player> {
 
 	public Player(int t) {
 		plants = new Card[3];
+		//
+		plants[0] = new Card(3, 0, 0, 0);
+		plants[1] = new Card(3, 0, 0, 0);
+		plants[2] = new Card(3, 0, 0, 0);
+		//
 		turn = t;
 		money = 50;
 		cities = new ArrayList<>();
@@ -55,17 +61,66 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void addPlant(Card c, int i) {
-		Card rem = removePlant(i);
-		plants[i] = c;
-
+		Card rem = plants[i];
+		if(rem != null) {
+			int storage = rem.getStorage();
+			int cDiff = 0;
+			int oDiff = 0;
+			if(rem.getRes() != Resource.DOUBLE) {
+				for(int k = 0; k < storage; k++)
+					subtractRes(rem.getRes());
+			} else {
+				for(int k = 0; k < storage; k++) {
+					int prevC = showRes().get(Resource.COAL);
+					int prevO = showRes().get(Resource.OIL);
+					subtractRes(rem.getRes());
+					int postC = showRes().get(Resource.COAL);
+					int postO = showRes().get(Resource.OIL);
+					cDiff = cDiff + prevC - postC;
+					oDiff = oDiff + prevO - postO;
+				}
+			}
+			plants[i] = c;
+			if(rem.getRes() != Resource.DOUBLE) {
+				int[] available = availableResource();
+				while(available[Resource.resourceToNum(rem.getRes())] != -1 && storage > 0) {
+					addRes(rem.getRes(), plants[available[Resource.resourceToNum(rem.getRes())]]);
+					storage--;
+					available = availableResource();
+				}
+			} else {
+				int[] available = availableResource();
+				while(available[0] != -1 && cDiff > 0) {
+					addRes(Resource.COAL, plants[available[0]]);
+					cDiff--;
+					available = availableResource();
+				}
+				available = availableResource();
+				while(available[1] != -1 && oDiff > 0) {
+					addRes(Resource.OIL, plants[available[1]]);
+					oDiff--;
+					available = availableResource();
+				}
+			}
+		}
+		else
+			plants[i] = c;
 	}
-
-	public Card removePlant(int i) {
-		if (plants[i] == null)
-			return null;
-		Card c = plants[i];
-		plants[i] = null;
-		return c;
+	
+	public int[] availableResource() {
+		int[] rtn = new int[4];
+		Arrays.fill(rtn, -1);
+		for (int i = 0; i < 3; i++) {
+			if (getPlants()[i] != null && canIBuy(getPlants()[i])) {
+				if (getPlants()[i].getRes() != Resource.DOUBLE)
+					rtn[Resource.resourceToNum(getPlants()[i].getRes())] = i;
+				else {
+					rtn[Resource.resourceToNum(Resource.COAL)] = i;
+					rtn[Resource.resourceToNum(Resource.OIL)] = i;
+				}
+			}
+		}
+		return rtn;
 	}
 
 	public void addCity(String n) {
