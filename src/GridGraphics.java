@@ -34,7 +34,8 @@ public class GridGraphics extends JFrame {
 		panel = new GridPanel();
 		add(panel);
 		this.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
+				System.out.println(e.getX() + " " + e.getY());
 				if (panel.getScreen() == 0) { // start screen
 					panel.setScreen(1);
 				} else if (panel.getScreen() == 1) { // choose regions

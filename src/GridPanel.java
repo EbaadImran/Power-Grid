@@ -104,16 +104,16 @@ public class GridPanel extends JPanel {
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
 			
-			//lol
-			for(int i = 0; i < 4; i++)
-			{
-				g.setColor(colors.get(Board.TURN_COLORS[players[i].getTurn()]));
-				g.fillOval(48 + (72 * players[i].getNumCities()), 889, 10, 10);
-			}
-			for(int i = 0; i < 17; i++)
-			{
-				g.fillOval(48 + (74 * i), 889, 10, 10);
-			}
+			//Displaying City Numbers
+			g.setColor(colors.get(Board.TURN_COLORS[players[0].getTurn()]));
+			g.fillOval(48 + (int)Math.floor((73.3 * players[0].getNumCities())), 889, 10, 10);
+			g.setColor(colors.get(Board.TURN_COLORS[players[1].getTurn()]));
+			g.fillOval(48 + (int)Math.floor((73.3 * players[1].getNumCities())), 911, 10, 10);			//Best line of code in this entire project
+			g.setColor(colors.get(Board.TURN_COLORS[players[2].getTurn()]));
+			g.fillOval(85 + (int)Math.floor((73.3 * players[2].getNumCities())), 889, 10, 10);
+			g.setColor(colors.get(Board.TURN_COLORS[players[3].getTurn()]));
+			g.fillOval(85 + (int)Math.floor((73.3 * players[3].getNumCities())), 911, 10, 10);
+			
 			
 
 			if (phase == 1) {
