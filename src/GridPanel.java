@@ -98,6 +98,18 @@ public class GridPanel extends JPanel {
 			int turn = (int) gs.get(6);
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
+			
+			//Amount of Cities Bottom
+			for(int i = 0; i < 4; i++)
+			{
+				g.setColor(colors.get(Board.TURN_COLORS[players[i].getTurn()]));
+				g.fillOval(48 + (72 * players[i].getNumCities()), 889, 10, 10);
+			}
+			for(int i = 0; i < 17; i++)
+			{
+				g.fillOval(48 + (74 * i), 889, 10, 10);
+			}
+			
 
 			if (phase == 1) {
 				g.setColor(colors.get("sec"));
