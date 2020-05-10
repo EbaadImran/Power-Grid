@@ -397,7 +397,6 @@ public class GridPanel extends JPanel {
 					? players[viewingPlayer].getCities().toString().toUpperCase().replace("_", " ").substring(1,
 							players[viewingPlayer].getCities().toString().length() - 1)
 					: "NONE";
-			g.drawString("Cities: " + cities, 1365, 650);
 			g.setFont(new Font("Courier", Font.BOLD, 30));
 			for (int i = 0; i < 4; i++) {
 				g.drawString("x" + players[viewingPlayer].showRes().get(Resource.numToResource(i)), 1450 + i * 122, 728);

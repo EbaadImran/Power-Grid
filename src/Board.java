@@ -86,6 +86,7 @@ public class Board {
 				deck.setStage3();
 			
 			round++;
+			market.refreshMarket(step);
 			turnOrder();
 		}
 		else if(phase == 1) {
@@ -127,7 +128,6 @@ public class Board {
 				deck.buyCard(deck.getMarket()[0]);
 				deck.discard(c);
 				deck.draw();
-				//TODO: Check stage 3
 			}
 			nextPhase();
 			turn = 3;
@@ -151,7 +151,6 @@ public class Board {
 			deck.buyCard(deck.getMarket()[0]);
 			deck.discard(c);
 			deck.draw();
-			//TODO: Check stage 3
 		}
 	}
 	public int getRound() {
@@ -204,7 +203,6 @@ public class Board {
 		deck.buyCard(auction.getCard());
 		deck.discard(auction.getCard());
 		deck.draw();
-		//TODO: Check stage 3
 		players[player].addPlant(auction.getCard(), slot);
 		removeFromAuction(players[player].getTurn());
 		players[player].removeMoney(price);

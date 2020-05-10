@@ -41,7 +41,7 @@ public class Market {
 	public void refreshMarket(int s) {
 		for(int i = 0; i < 4; i++) {
 			addResource(i, Board.RESET_MARKET[s][i]);
-			markets[i] = Math.max(markets[i], CAP[i]);
+			markets[i] = Math.min(markets[i], CAP[i]);
 		}
 	}
 }
