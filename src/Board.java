@@ -44,7 +44,6 @@ public class Board {
 		lockOrder = new Stack<>();
 		auctionOrder = new ArrayList<>();
 		market = new Market();
-		winOrder = new Player[4];
 		turn = 0;
 		phase = 0;
 		round = 0;
