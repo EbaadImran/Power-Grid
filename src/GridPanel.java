@@ -424,8 +424,7 @@ public class GridPanel extends JPanel {
 			g.drawString(Board.PHASES[phase], 1478, 527);
 
 			for (int i = 0; i < 4; i++)
-				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource(Board.TURN_COLORS[players[i].getTurn()] + ".png")).getImage(), 1525 + i * 75,
-						925, 70, 70, null);
+				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource(Board.TURN_COLORS[players[i].getTurn()] + ".png")).getImage(), 1525 + i * 75, 925, 70, 70, null);
 
 			Player display = players[viewingPlayer];
 			for (int i = 0; i < 3; i++) {
