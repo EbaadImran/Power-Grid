@@ -233,7 +233,7 @@ public class GridGraphics extends JFrame {
 								panel.setCityPopup(null);
 								if (board.getStep() == 0 && board.getPlayers()[board.getTurn()].getNumCities() == 7)
 									board.setStep(1);
-								else if(board.getPlayers()[board.getTurn()].getNumCities() == 17) {
+								else if (board.getPlayers()[board.getTurn()].getNumCities() == 17) {
 									board.winPhase();
 								}
 							}
@@ -287,6 +287,66 @@ public class GridGraphics extends JFrame {
 										System.out.println(check);
 									}
 								}
+							}
+						}
+					} else if (board.getPhase() == 5) {
+						if (!panel.getEndGamePopup() && e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 765
+								&& e.getY() <= 110) {
+							panel.setCitiesPowered(0);
+							panel.setEndGamePopup(true);
+						} else if (panel.getEndGamePopup()) {
+							if (e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325) {
+								panel.setEndGamePopup(false);
+							} else if (e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
+								System.out.println("nignogf");
+								panel.addToWinsort(new WinSort(panel.getCitiesPowered(),
+										board.getPlayers()[board.getTurn()].getMoney(),
+										board.getPlayers()[board.getTurn()].getTurn()));
+								panel.setEndGamePopup(false);
+								panel.setCitiesPowered(-1);
+								board.frontTurn();
+								panel.setPlayer(board.getTurn());
+								if(board.getTurn() == 0) {
+									board.finishGame();
+									panel.end(true);
+								}
+							}
+							int i = (e.getX() - 500) / 110;
+							if (i >= 0 && i <= 2 && e.getY() >= 400 && e.getY() <= 475) {
+								Card c = board.getPlayers()[board.getTurn()].getPlants()[i];
+								if (c.getRes() != Resource.DOUBLE
+										&& board.getPlayers()[board.getTurn()].showRes().get(c.getRes()) >= c.getCost()
+										&& board.getPlayers()[board.getTurn()].getNumCities()
+												- panel.getCitiesPowered() > 0) {
+									panel.addCitiesPowered(Math.min(c.getMaxCities(),
+											board.getPlayers()[board.getTurn()].getNumCities()
+													- panel.getCitiesPowered()));
+									int price = c.getCost();
+									for (int k = 0; k < price; k++)
+										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+								} else if (c.getRes() == Resource.DOUBLE
+										&& board.getPlayers()[board.getTurn()].showRes().get(Resource.COAL)
+												+ board.getPlayers()[board.getTurn()].showRes().get(Resource.OIL) >= c
+														.getCost()
+										&& board.getPlayers()[board.getTurn()].getNumCities()
+												- panel.getCitiesPowered() > 0) {
+									panel.addCitiesPowered(Math.min(c.getMaxCities(),
+											board.getPlayers()[board.getTurn()].getNumCities()
+													- panel.getCitiesPowered()));
+									int price = c.getCost();
+									for (int k = 0; k < price; k++)
+										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
+								}
+							}
+						}
+					} else if (board.getPhase() == 6) {
+						if (!panel.ended() && e.getX() >= 610 && e.getY() >= 50 && e.getX() <= 765
+								&& e.getY() <= 110) {
+							panel.end(true);
+						}
+						else {
+							if(e.getX() >= 871 && e.getY() >= 777 && e.getX() <= 1059 && e.getY() <= 845) {
+								panel.end(false);
 							}
 						}
 					}

@@ -13,7 +13,7 @@ public class Player implements Comparable<Player> {
 	public Player(int t) {
 		plants = new Card[3];
 		turn = t;
-		money = 50;
+		money = 10000;
 		cities = new ArrayList<>();
 		Dlist.put(Resource.COAL, 0);
 		Dlist.put(Resource.OIL, 0);
@@ -218,6 +218,46 @@ public class Player implements Comparable<Player> {
 			return oth.biggestPlant() - biggestPlant();
 		return oth.getNumCities() - getNumCities();
 	}
-	
+}
 
+class WinSort implements Comparable<WinSort> {
+	private int citiesPowered;
+	private int money;
+	private int turn;
+	
+	public WinSort(int c, int m, int t) {
+		setCitiesPowered(c);
+		setMoney(m);
+		setTurn(t);
+	}
+	
+	public int compareTo(WinSort oth) {
+		if(citiesPowered == oth.citiesPowered)
+			return oth.money - money;
+		return oth.citiesPowered - citiesPowered;
+	}
+
+	public int getTurn() {
+		return turn;
+	}
+
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public int getCitiesPowered() {
+		return citiesPowered;
+	}
+
+	public void setCitiesPowered(int citiesPowered) {
+		this.citiesPowered = citiesPowered;
+	}
 }

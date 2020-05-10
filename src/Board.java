@@ -20,7 +20,7 @@ public class Board {
 	private int step;
 	private int round;
 	public static final String[] TURN_COLORS = {"RED", "BLUE", "GREEN", "PURPLE"};
-	public static final String[] PHASES = {"ORDER", "AUCTION", "BUYING", "BUILDING", "BUREAUCRACY"};
+	public static final String[] PHASES = {"ORDER", "AUCTION", "BUYING", "BUILDING", "BUREAUCRACY", "END GAME", "GAME FINISHED"};
 	public static final int[] PAYOUT = {10, 22, 33, 44, 54, 64, 73, 82, 90, 98, 105, 112, 118, 124, 129, 134, 138, 142, 145, 148, 150};
 	public static final int[][] RESET_MARKET = {{5, 3, 2, 1}, {6, 4, 3, 2}, {4, 5, 4, 2}};
 	
@@ -104,6 +104,10 @@ public class Board {
 	}
 	public void winPhase() {
 		phase = 5;
+		turn = 0;
+	}
+	public void finishGame() {
+		phase = 6;
 		turn = 0;
 	}
 	public Player[] getPlayers() {
