@@ -15,6 +15,7 @@ public class Board {
 	private HashSet<String> locked;
 	private Stack<String> lockOrder;
 	private ArrayList<Integer> auctionOrder;
+	private Player[] winOrder;
 	private int turn;
 	private int phase;
 	private int step;
@@ -44,6 +45,7 @@ public class Board {
 		lockOrder = new Stack<>();
 		auctionOrder = new ArrayList<>();
 		market = new Market();
+		winOrder = new Player[4];
 		turn = 0;
 		phase = 0;
 		round = 0;
@@ -210,10 +212,12 @@ public class Board {
 	}
 	public boolean checkWin() {
 		for(Player k : players)
-			if(k.getNumCities() == 17)
+			if(k.getNumCities() == 17)	
 				return true;
+		
 		return false;
 	}
+
 	public ArrayList<Object> getGamestate() {
 		ArrayList<Object> gs = new ArrayList<>();
 		gs.add(players); //0
@@ -228,6 +232,7 @@ public class Board {
 		gs.add(deck); //9
 		gs.add(auction); //10
 		gs.add(round); //11
+		
 		return gs;
 	}
 }

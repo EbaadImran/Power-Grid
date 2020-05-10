@@ -103,6 +103,7 @@ public class GridPanel extends JPanel {
 			int round = (int) gs.get(11);
 			int moneyOnGUI = players[viewingPlayer].getMoney();
 			int currMoney = players[turn].getMoney();
+			
 
 			// Displaying City Numbers
 			g.setColor(colors.get(Board.TURN_COLORS[players[0].getTurn()]));
@@ -399,8 +400,7 @@ public class GridPanel extends JPanel {
 			g.drawString("Cities: " + cities, 1365, 650);
 			g.setFont(new Font("Courier", Font.BOLD, 30));
 			for (int i = 0; i < 4; i++) {
-				g.drawString("x" + players[viewingPlayer].showRes().get(Resource.numToResource(i)), 1450 + i * 122,
-						728);
+				g.drawString("x" + players[viewingPlayer].showRes().get(Resource.numToResource(i)), 1450 + i * 122, 728);
 			}
 		}
 	}

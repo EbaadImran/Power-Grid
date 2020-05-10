@@ -218,4 +218,6 @@ public class Player implements Comparable<Player> {
 			return oth.biggestPlant() - biggestPlant();
 		return oth.getNumCities() - getNumCities();
 	}
+	
+
 }
