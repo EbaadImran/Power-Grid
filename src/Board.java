@@ -75,6 +75,14 @@ public class Board {
 	public void nextPhase() {
 		phase = (phase + 1) % 5;
 		if(phase == 0) {
+			Card c = deck.getMarket()[7];
+			deck.buyCard(deck.getMarket()[7]);
+			deck.discard(c);
+			deck.draw();
+			
+			if(deck.checkStage3())
+				deck.setStage3();
+			
 			round++;
 			turnOrder();
 		}
@@ -83,9 +91,13 @@ public class Board {
 				auctionOrder.add(players[i].getTurn());
 		}
 		else if(phase == 2) {
+			if(deck.checkStage3())
+				deck.setStage3();
 			auction.endPhase();
 		}
 		else if(phase == 4) {
+			if(deck.checkStage3())
+				deck.setStage3();
 			turn = 0;
 		}
 	}
@@ -130,8 +142,15 @@ public class Board {
 	public int getStep() {
 		return step;
 	}
-	public void setStep(int step) {
-		this.step = step;
+	public void setStep(int s) {
+		step = s;
+		if(step == 1) {
+			Card c = deck.getMarket()[0];
+			deck.buyCard(deck.getMarket()[0]);
+			deck.discard(c);
+			deck.draw();
+			//TODO: Check stage 3
+		}
 	}
 	public int getRound() {
 		return round;

@@ -33,16 +33,16 @@ public class Deck {
 
     public boolean draw() {
         Card card = deck.remove(0);
-        if (card.getNum() == 0) {
-            return true;
-        }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < market.length; i++) {
             if (market[i] == null) {
                 market[i] = card;
                 break;
             }
         }
         Arrays.sort(market);
+        if (card.getNum() == 0) {
+            return true;
+        }
         return false;
     }
     
@@ -55,6 +55,17 @@ public class Deck {
             if (c.getNum() == market[i].getNum())
                 market[i] = null;
         }
+    }
+    
+    public void setStage3() {
+    	Card[] newM = new Card[6];
+    	for(int i = 1; i < 7; i++)
+    		newM[i-1] = market[i];
+    	market = newM;
+    }
+    
+    public boolean checkStage3() {
+    	return market[7].getNum() == 0;
     }
 
     public Card[] getMarket() {

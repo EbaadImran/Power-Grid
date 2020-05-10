@@ -239,7 +239,13 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i * 120 + 420, 360, 110,
 							110, null);
 				}
-				if (auctionPopup == 1 && round > 0) {
+				if(auctionPopup == 1 && step == 2) {
+					g.drawImage(new ImageIcon("" + plants[4].getNum() + ".png").getImage(), 420, 480, 110,
+							110, null);
+					g.drawImage(new ImageIcon("" + plants[5].getNum() + ".png").getImage(), 780, 480, 110,
+							110, null);
+				}
+				else if (auctionPopup == 1 && round > 0) {
 					g.setColor(colors.get("pri"));
 					g.fillOval(604, 500, 100, 50);
 					g.setColor(colors.get("sec"));
@@ -345,11 +351,20 @@ public class GridPanel extends JPanel {
 				g.drawString("x" + players[turn].showRes().get(Resource.URANIUM), 825, 575);
 			}
 
-			for (int i = 0; i < 4; i++) {
-				g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i * 130 + 1360, 50, 125, 125,
+			if(step < 2) {
+				for (int i = 0; i < 4; i++) {
+					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i * 130 + 1360, 50, 125, 125,
 						null);
-				g.drawImage(new ImageIcon("" + plants[i + 4].getNum() + ".png").getImage(), i * 130 + 1360, 180, 125,
+					g.drawImage(new ImageIcon("" + plants[i + 4].getNum() + ".png").getImage(), i * 130 + 1360, 180, 125,
 						125, null);
+				}
+			} else {
+				for (int i = 0; i < 4; i++)
+					g.drawImage(new ImageIcon("" + plants[i].getNum() + ".png").getImage(), i * 130 + 1360, 50, 125, 125,
+						null);
+				for(int i = 1; i < 3; i++)
+					g.drawImage(new ImageIcon("" + plants[i + 3].getNum() + ".png").getImage(), i * 130 + 1360, 180, 125,
+							125, null);
 			}
 
 			g.setColor(colors.get(Board.TURN_COLORS[players[turn].getTurn()]));

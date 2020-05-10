@@ -12,11 +12,6 @@ public class Player implements Comparable<Player> {
 
 	public Player(int t) {
 		plants = new Card[3];
-		//
-		plants[0] = new Card(3, 0, 0, 0);
-		plants[1] = new Card(3, 0, 0, 0);
-		plants[2] = new Card(3, 0, 0, 0);
-		//
 		turn = t;
 		money = 50;
 		cities = new ArrayList<>();
@@ -62,49 +57,45 @@ public class Player implements Comparable<Player> {
 
 	public void addPlant(Card c, int i) {
 		Card rem = plants[i];
+		plants[i] = c;
 		if(rem != null) {
 			int storage = rem.getStorage();
-			int cDiff = 0;
-			int oDiff = 0;
-			if(rem.getRes() != Resource.DOUBLE) {
-				for(int k = 0; k < storage; k++)
-					subtractRes(rem.getRes());
-			} else {
+			if(rem.getRes() == Resource.DOUBLE) {
+				int cAmt = 0;
+				int oAmt = 0;
 				for(int k = 0; k < storage; k++) {
-					int prevC = showRes().get(Resource.COAL);
-					int prevO = showRes().get(Resource.OIL);
-					subtractRes(rem.getRes());
-					int postC = showRes().get(Resource.COAL);
-					int postO = showRes().get(Resource.OIL);
-					cDiff = cDiff + prevC - postC;
-					oDiff = oDiff + prevO - postO;
+					if(Dlist.get(Resource.COAL) > 0) {
+						cAmt++;
+						Dlist.put(Resource.COAL, Dlist.get(Resource.COAL) - 1);
+					} else if(Dlist.get(Resource.OIL) > 0) {
+						oAmt++;
+						Dlist.put(Resource.OIL, Dlist.get(Resource.OIL) - 1);
+					}
 				}
-			}
-			plants[i] = c;
-			if(rem.getRes() != Resource.DOUBLE) {
-				int[] available = availableResource();
-				while(available[Resource.resourceToNum(rem.getRes())] != -1 && storage > 0) {
-					addRes(rem.getRes(), plants[available[Resource.resourceToNum(rem.getRes())]]);
-					storage--;
-					available = availableResource();
+				int k = 0;
+				while(cAmt > 0 && k < 3) {
+					if(addRes(Resource.COAL, plants[k]))
+						cAmt--;
+					else
+						k++;
+				}
+				k = 0;
+				while(oAmt > 0 && k < 3) {
+					if(addRes(Resource.OIL, plants[k]))
+						oAmt--;
+					else
+						k++;
 				}
 			} else {
-				int[] available = availableResource();
-				while(available[0] != -1 && cDiff > 0) {
-					addRes(Resource.COAL, plants[available[0]]);
-					cDiff--;
-					available = availableResource();
-				}
-				available = availableResource();
-				while(available[1] != -1 && oDiff > 0) {
-					addRes(Resource.OIL, plants[available[1]]);
-					oDiff--;
-					available = availableResource();
+				int k = 0;
+				while(storage > 0 && k < 3) {
+					if(addRes(rem.getRes(), plants[k]))
+						storage--;
+					else
+						k++;
 				}
 			}
 		}
-		else
-			plants[i] = c;
 	}
 	
 	public int[] availableResource() {
