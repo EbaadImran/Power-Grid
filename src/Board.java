@@ -15,7 +15,6 @@ public class Board {
 	private HashSet<String> locked;
 	private Stack<String> lockOrder;
 	private ArrayList<Integer> auctionOrder;
-	private Player[] winOrder;
 	private int turn;
 	private int phase;
 	private int step;
