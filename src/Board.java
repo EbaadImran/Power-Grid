@@ -84,6 +84,7 @@ public class Board {
 				deck.setStage3();
 			
 			round++;
+			market.refreshMarket(step);
 			turnOrder();
 		}
 		else if(phase == 1) {
