@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +13,10 @@ public class Deck {
     private Card[] market;
 
     public Deck() throws IOException {
-        BufferedReader f = new BufferedReader(new FileReader("deck.txt"));
+    	
+    	InputStream inputStream = Deck.class.getResourceAsStream("/deck.txt");
+ 		InputStreamReader inputReader = new InputStreamReader(inputStream);
+        BufferedReader f = new BufferedReader(inputReader);
         deck = new ArrayList<>();
         market = new Card[8];
 

@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,8 +17,10 @@ public class Graph {
     public Graph() throws IOException {
         cities = new LinkedHashMap<>();
         regions = new HashMap<>();
-
-        BufferedReader f = new BufferedReader(new FileReader("cityInfo.txt"));
+        
+        InputStream inputStream = Graph.class.getResourceAsStream("/cityInfo.txt");
+		InputStreamReader inputReader = new InputStreamReader(inputStream);
+        BufferedReader f = new BufferedReader(inputReader);
         for (int i = 0; i < 42; i++) {
             StringTokenizer temp = new StringTokenizer(f.readLine());
             String color = temp.nextToken();
@@ -35,7 +39,9 @@ public class Graph {
                         .addPath(new Path(cities.get(temp.nextToken()), Integer.parseInt(temp.nextToken())));
         }
 
-        f = new BufferedReader(new FileReader("regions.txt"));
+        inputStream = Graph.class.getResourceAsStream("/regions.txt");
+		inputReader = new InputStreamReader(inputStream);
+        f = new BufferedReader(inputReader);
         for(int i = 0; i < 6; i++) {
             String region = f.readLine();
             regions.put(region, new HashSet<>());
