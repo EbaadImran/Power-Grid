@@ -233,6 +233,9 @@ public class GridGraphics extends JFrame {
 								panel.setCityPopup(null);
 								if (board.getStep() == 0 && board.getPlayers()[board.getTurn()].getNumCities() == 7)
 									board.setStep(1);
+								else if(board.getPlayers()[board.getTurn()].getNumCities() == 17) {
+									board.winPhase();
+								}
 							}
 						}
 					} else if (board.getPhase() == 4) {

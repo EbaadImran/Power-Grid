@@ -102,6 +102,10 @@ public class Board {
 			turn = 0;
 		}
 	}
+	public void winPhase() {
+		phase = 5;
+		turn = 0;
+	}
 	public Player[] getPlayers() {
 		return players;
 	}
