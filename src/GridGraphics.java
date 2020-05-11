@@ -75,8 +75,8 @@ public class GridGraphics extends JFrame {
 							if (panel.getAuctionPopup() == 1) {
 								if (e.getX() >= 604 && e.getY() >= 500 && e.getX() <= 704 && e.getY() <= 550
 										&& board.getRound() > 0) {
-									board.removeFromAuction(board.getPlayers()[board.getTurn()].getTurn());
 									board.getAuction().increasePass();
+									board.removeFromAuction(board.getPlayers()[board.getTurn()].getTurn());
 									panel.setAuctionPopup(0);
 									panel.setPlayer(board.getTurn());
 								}
