@@ -64,6 +64,8 @@ public class Card implements Comparable<Card>{
     public int compareTo(Card oth) {
     	if(num == 0)
     		return 1;
+    	else if(oth.num == 0)
+    		return -1;
         return num - oth.num;
     }
 }
