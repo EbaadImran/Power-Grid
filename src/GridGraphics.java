@@ -92,13 +92,13 @@ public class GridGraphics extends JFrame {
 												.getMoney() >= board.getDeck().getMarket()[4].getNum()) {
 									panel.setAuctionPopup(2);
 									panel.setAuctionCard(board.getDeck().getMarket()[4]);
-									panel.setPrice(board.getDeck().getMarket()[i].getNum());
+									panel.setPrice(board.getDeck().getMarket()[4].getNum());
 								} else if (board.getStep() == 2 && e.getX() >= 780 && e.getX() <= 890 && e.getY() >= 480
 										&& e.getY() <= 590 && board.getPlayers()[board.getTurn()]
 												.getMoney() >= board.getDeck().getMarket()[5].getNum()) {
 									panel.setAuctionPopup(2);
 									panel.setAuctionCard(board.getDeck().getMarket()[5]);
-									panel.setPrice(board.getDeck().getMarket()[i].getNum());
+									panel.setPrice(board.getDeck().getMarket()[5].getNum());
 								}
 							} else if (panel.getAuctionPopup() == 2) {
 								if (e.getX() >= 575 && e.getY() >= 525 && e.getX() <= 625 && e.getY() <= 575) {
