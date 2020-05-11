@@ -80,8 +80,10 @@ public class Board {
 			deck.discard(c);
 			deck.draw();
 			
-			if(deck.checkStage3())
+			if(deck.checkStage3()) {
 				deck.setStage3();
+				step = 3;
+			}
 			
 			round++;
 			market.refreshMarket(step);
@@ -92,13 +94,17 @@ public class Board {
 				auctionOrder.add(players[i].getTurn());
 		}
 		else if(phase == 2) {
-			if(deck.checkStage3())
+			if(deck.checkStage3()) {
 				deck.setStage3();
+				step = 3;
+			}
 			auction.endPhase();
 		}
 		else if(phase == 4) {
-			if(deck.checkStage3())
+			if(deck.checkStage3()) {
 				deck.setStage3();
+				step = 3;
+			}
 			turn = 0;
 		}
 	}
