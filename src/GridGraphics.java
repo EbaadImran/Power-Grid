@@ -247,7 +247,8 @@ public class GridGraphics extends JFrame {
 								panel.setMoneyPopup(false);
 							} else if (e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
 								for(Card c : board.getPlayers()[board.getTurn()].getPlants())
-									c.activate(false);
+									if(c != null)
+										c.activate(false);
 								board.getPlayers()[board.getTurn()]
 										.addMoney(Board.PAYOUT[Math.min(20, panel.getCitiesPowered())]);
 								panel.setMoneyPopup(false);
@@ -298,7 +299,8 @@ public class GridGraphics extends JFrame {
 								panel.setEndGamePopup(false);
 							} else if (e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
 								for(Card c : board.getPlayers()[board.getTurn()].getPlants())
-									c.activate(false);
+									if(c != null)
+										c.activate(false);
 								panel.addToWinsort(new WinSort(panel.getCitiesPowered(),
 										board.getPlayers()[board.getTurn()].getMoney(),
 										board.getPlayers()[board.getTurn()].getTurn()));
