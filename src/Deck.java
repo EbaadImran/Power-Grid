@@ -70,7 +70,7 @@ public class Deck {
     }
     
     public boolean checkStage3() {
-    	return market[7].getNum() == 0;
+    	return market[market.length-1].getNum() == 0;
     }
 
     public Card[] getMarket() {
