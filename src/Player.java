@@ -13,7 +13,7 @@ public class Player implements Comparable<Player> {
 	public Player(int t) {
 		plants = new Card[3];
 		turn = t;
-		money = 10000;
+		money = 50;
 		cities = new ArrayList<>();
 		Dlist.put(Resource.COAL, 0);
 		Dlist.put(Resource.OIL, 0);
