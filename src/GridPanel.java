@@ -246,7 +246,7 @@ public class GridPanel extends JPanel {
 						: "UNAVAILABLE", 620, 498);
 				String displayOcc = "";
 				for (int k : occ)
-					displayOcc += Board.TURN_COLORS[k];
+					displayOcc += Board.TURN_COLORS[k] + " ";
 				if (displayOcc.equals(""))
 					displayOcc = "NONE";
 				g.drawString(displayOcc, 700, 525);
