@@ -266,7 +266,7 @@ public class GridPanel extends JPanel {
 					g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("" + plants[5].getNum() + ".png")).getImage(), 780, 480, 110,
 							110, null);
 				}
-				else if (auctionPopup == 1 && round > 0) {
+				if (auctionPopup == 1 && round > 0) {
 					g.setColor(colors.get("pri"));
 					g.fillOval(604, 500, 100, 50);
 					g.setColor(colors.get("sec"));
