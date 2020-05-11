@@ -463,11 +463,11 @@ public class GridPanel extends JPanel {
 				g.drawString("Cities Powered:" + win[0].getCitiesPowered(), 814, 463);
 				g.drawString(win[0].getMoney() + " ELEKTROS", 814, 488);
 				g.drawString("Cities Powered:" + win[1].getCitiesPowered(), 450, 541);
-				g.drawString(win[0].getMoney() + " ELEKTROS", 450, 566);
+				g.drawString(win[1].getMoney() + " ELEKTROS", 450, 566);
 				g.drawString("Cities Powered:" + win[2].getCitiesPowered(), 1181, 660);
-				g.drawString(win[0].getMoney() + " ELEKTROS", 1181, 685);
+				g.drawString(win[2].getMoney() + " ELEKTROS", 1181, 685);
 				g.drawString("Cities Powered:" + win[3].getCitiesPowered(), 1195, 1004);
-				g.drawString(win[0].getMoney() + " ELEKTROS", 1195, 1029);
+				g.drawString(win[3].getMoney() + " ELEKTROS", 1195, 1029);
 			}
 		}
 	}
