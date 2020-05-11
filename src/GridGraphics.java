@@ -247,6 +247,8 @@ public class GridGraphics extends JFrame {
 							if (e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325) {
 								panel.setMoneyPopup(false);
 							} else if (e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
+								for(Card c : board.getPlayers()[board.getTurn()].getPlants())
+									c.activate(false);
 								board.getPlayers()[board.getTurn()]
 										.addMoney(Board.PAYOUT[Math.min(20, panel.getCitiesPowered())]);
 								panel.setMoneyPopup(false);
@@ -258,7 +260,7 @@ public class GridGraphics extends JFrame {
 							int i = (e.getX() - 500) / 110;
 							if (i >= 0 && i <= 2 && e.getY() >= 400 && e.getY() <= 475) {
 								Card c = board.getPlayers()[board.getTurn()].getPlants()[i];
-								if (c.getRes() != Resource.DOUBLE
+								if (!c.activated() && c.getRes() != Resource.DOUBLE
 										&& board.getPlayers()[board.getTurn()].showRes().get(c.getRes()) >= c.getCost()
 										&& board.getPlayers()[board.getTurn()].getNumCities()
 												- panel.getCitiesPowered() > 0) {
@@ -266,12 +268,11 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
-									System.out.println(price);
+									c.activate(true);
 									for (int k = 0; k < price; k++) {
-										boolean check = board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
-										System.out.println(check);
+										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
 									}
-								} else if (c.getRes() == Resource.DOUBLE
+								} else if (!c.activated() && c.getRes() == Resource.DOUBLE
 										&& board.getPlayers()[board.getTurn()].showRes().get(Resource.COAL)
 												+ board.getPlayers()[board.getTurn()].showRes().get(Resource.OIL) >= c
 														.getCost()
@@ -281,10 +282,9 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
-									System.out.println(price);
+									c.activate(true);
 									for (int k = 0; k < price; k++) {
-										boolean check = board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
-										System.out.println(check);
+										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
 									}
 								}
 							}

@@ -4,6 +4,7 @@ public class Card implements Comparable<Card>{
     private int cost;
     private int maxCities;
     private int storage = 0;
+    private boolean activated;
 
     public Card(int n, int r, int c, int max) {
         setNum(n);
@@ -52,6 +53,12 @@ public class Card implements Comparable<Card>{
     }
     public void subtractStorage() {
         storage -= 1;
+    }
+    public void activate(boolean b) {
+    	activated = b;
+    }
+    public boolean activated() {
+    	return activated;
     }
 
     public int compareTo(Card oth) {

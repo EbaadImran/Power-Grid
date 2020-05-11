@@ -128,7 +128,6 @@ public class GridPanel extends JPanel {
 				g2.drawRect(610, 50, 158, 60);
 				g.setFont(new Font("Courier", Font.BOLD, 18));
 				g.drawString("GO TO AUCTION", 620, 85);
-
 			} else if (phase == 2) {
 				g.setColor(colors.get("sec"));
 				g.fillRect(610, 50, 158, 60);
@@ -349,11 +348,11 @@ public class GridPanel extends JPanel {
 					if (currCard != null) {
 						g.drawImage(new ImageIcon("" + currCard.getNum() + ".png").getImage(), 500 + i * 110, 400, 75,
 								75, null);
-						if (currCard.getRes() != Resource.DOUBLE
+						if (currCard.activated() || currCard.getRes() != Resource.DOUBLE
 								&& players[turn].showRes().get(currCard.getRes()) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
 							g.drawImage(new ImageIcon("x.png").getImage(), 500 + i * 110, 400, 75, 75, null);
-						} else if (currCard.getRes() == Resource.DOUBLE
+						} else if (currCard.activated() || currCard.getRes() == Resource.DOUBLE
 								&& players[turn].showRes().get(Resource.COAL)
 										+ players[turn].showRes().get(Resource.OIL) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
