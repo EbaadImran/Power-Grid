@@ -48,6 +48,7 @@ public class Board {
 		phase = 0;
 		round = 0;
 		nextPhase();
+		phase = 5;
 		step = 0;
 	}
 	public Graph getGraph() {

@@ -456,6 +456,15 @@ public class GridPanel extends JPanel {
 				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("Player" + win[1].getTurn() + ".png")).getImage(), 520, 141, 150, 150, null);
 				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("Player" + win[2].getTurn() + ".png")).getImage(), 1251, 260, 150, 150, null);
 				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("Player" + win[3].getTurn() + ".png")).getImage(), 915, 854, 125, 125, null);
+				g.setColor(colors.get("pri"));
+				g.drawString("Cities Powered:" + win[0].getCitiesPowered(), 814, 463);
+				g.drawString(win[0].getMoney() + " ELEKTROS", 814, 488);
+				g.drawString("Cities Powered:" + win[1].getCitiesPowered(), 450, 541);
+				g.drawString(win[0].getMoney() + " ELEKTROS", 450, 566);
+				g.drawString("Cities Powered:" + win[2].getCitiesPowered(), 1181, 660);
+				g.drawString(win[0].getMoney() + " ELEKTROS", 1181, 685);
+				g.drawString("Cities Powered:" + win[3].getCitiesPowered(), 1195, 1004);
+				g.drawString(win[0].getMoney() + " ELEKTROS", 1195, 1029);
 			}
 		}
 	}
