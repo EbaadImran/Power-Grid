@@ -297,7 +297,8 @@ public class GridGraphics extends JFrame {
 							if (e.getX() >= 860 && e.getX() <= 875 && e.getY() >= 310 && e.getY() <= 325) {
 								panel.setEndGamePopup(false);
 							} else if (e.getX() >= 602 && e.getY() >= 614 && e.getX() <= 702 && e.getY() <= 645) {
-								System.out.println("nignogf");
+								for(Card c : board.getPlayers()[board.getTurn()].getPlants())
+									c.activate(false);
 								panel.addToWinsort(new WinSort(panel.getCitiesPowered(),
 										board.getPlayers()[board.getTurn()].getMoney(),
 										board.getPlayers()[board.getTurn()].getTurn()));
@@ -321,6 +322,7 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
+									c.activate(true);
 									for (int k = 0; k < price; k++)
 										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
 								} else if (c.getRes() == Resource.DOUBLE
@@ -333,6 +335,7 @@ public class GridGraphics extends JFrame {
 											board.getPlayers()[board.getTurn()].getNumCities()
 													- panel.getCitiesPowered()));
 									int price = c.getCost();
+									c.activate(true);
 									for (int k = 0; k < price; k++)
 										board.getPlayers()[board.getTurn()].subtractRes(c.getRes());
 								}

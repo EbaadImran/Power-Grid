@@ -349,11 +349,11 @@ public class GridPanel extends JPanel {
 					if (currCard != null) {
 						g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("" + currCard.getNum() + ".png")).getImage(), 500 + i * 110, 400, 75,
 								75, null);
-						if (currCard.getRes() != Resource.DOUBLE
+						if (currCard.activated() || currCard.getRes() != Resource.DOUBLE
 								&& players[turn].showRes().get(currCard.getRes()) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
 							g.drawImage(new ImageIcon(getClass().getClassLoader().getResource("x.png")).getImage(), 500 + i * 110, 400, 75, 75, null);
-						} else if (currCard.getRes() == Resource.DOUBLE
+						} else if (currCard.activated() || currCard.getRes() == Resource.DOUBLE
 								&& players[turn].showRes().get(Resource.COAL)
 										+ players[turn].showRes().get(Resource.OIL) < currCard.getCost()
 								|| players[turn].getNumCities() - citiesPowered == 0) {
