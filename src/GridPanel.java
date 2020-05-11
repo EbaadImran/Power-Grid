@@ -425,6 +425,9 @@ public class GridPanel extends JPanel {
 
 			for (int i = 0; i < 4; i++)
 				g.drawImage(new ImageIcon(getClass().getClassLoader().getResource(Board.TURN_COLORS[players[i].getTurn()] + ".png")).getImage(), 1525 + i * 75, 925, 70, 70, null);
+			
+			g.setColor(colors.get("pri"));
+			g.drawString("CLICK TO VIEW PLAYERS", 1490, 1035);
 
 			Player display = players[viewingPlayer];
 			for (int i = 0; i < 3; i++) {
