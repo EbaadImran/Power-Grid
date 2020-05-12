@@ -126,15 +126,14 @@ public class Player implements Comparable<Player> {
 		return cities;
 	}
 
-	public int biggestPlant() {
-		int big = Integer.MIN_VALUE;
-		for (Card k : plants) {
-			if(k == null)
-				return -1;
-			big = Math.max(big, k.getNum());
-		}
-		return big;
-	}
+	public int biggestPlant() { 
+        int big = Integer.MIN_VALUE;
+        for (Card k : plants) {
+            if(k != null)
+                big = Math.max(big, k.getNum());
+        }
+        return big;
+    }
 
 	public boolean addRes(Resource res, Card c)// incase it can't store more resources it will throw a false.
 	{

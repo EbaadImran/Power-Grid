@@ -72,42 +72,46 @@ public class Board {
 	public int getPhase() {
 		return phase;
 	}
+	
 	public void nextPhase() {
-		phase = (phase + 1) % 5;
-		if(phase == 0) {
-			Card c = deck.getMarket()[deck.getMarket().length-1];
-			deck.buyCard(deck.getMarket()[deck.getMarket().length-1]);
-			deck.discard(c);
-			deck.draw();
-			
-			if(deck.checkStage3()) {
-				deck.setStage3();
-				step = 2;
-			}
-			
-			round++;
-			market.refreshMarket(step);
-			turnOrder();
-		}
-		else if(phase == 1) {
-			for(int i = 0; i < 4; i++)
-				auctionOrder.add(players[i].getTurn());
-		}
-		else if(phase == 2) {
-			if(deck.checkStage3()) {
-				deck.setStage3();
-				step = 2;
-			}
-			auction.endPhase();
-		}
-		else if(phase == 4) {
-			if(deck.checkStage3()) {
-				deck.setStage3();
-				step = 2;
-			}
-			turn = 0;
-		}
-	}
+        phase = (phase + 1) % 5;
+        if(phase == 0) {
+            Card c = deck.getMarket()[deck.getMarket().length-1];
+            deck.buyCard(deck.getMarket()[deck.getMarket().length-1]);
+            deck.discard(c);
+            deck.draw();
+
+            if(deck.checkStage3()) {
+                deck.setStage3();
+                step = 2;
+            }
+
+            round++;
+            market.refreshMarket(step);
+            turnOrder();
+        }
+        else if(phase == 1) {
+            for(int i = 0; i < 4; i++)
+                auctionOrder.add(players[i].getTurn());
+        }
+        else if(phase == 2) {
+            if(deck.checkStage3()) {
+                deck.setStage3();
+                step = 2;
+            }
+            if(round == 0) {
+                Arrays.sort(players);
+            }
+            auction.endPhase();
+        }
+        else if(phase == 4) {
+            if(deck.checkStage3()) {
+                deck.setStage3();
+                step = 2;
+            }
+            turn = 0;
+        }
+    }
 	public void winPhase() {
 		phase = 5;
 		turn = 0;
